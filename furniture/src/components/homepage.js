@@ -1,7 +1,15 @@
-import React from 'react';
-
+import React,{useState} from 'react';
+import carouselbg1 from "./img/carousel-bg-1.jpg";
+import carouselbg2 from "./img/carousel-bg-2.jpg";
+import carousel1 from "./img/carousel-1.png";
+import carousel2 from "./img/carousel-2.png";
+import Carousel from 'react-bootstrap/Carousel';
+// import carousel from "./img/carousel-bg-1.jpg";
+// import carousel from "./img/carousel-bg-1.jpg";
+// import carousel from "./img/carousel-bg-1.jpg";
 const HomePage = () => {
-
+    const [inputName, setinputName] = useState("");
+    const [inputEmail, setinputEmail] = useState("");
     return (
         <div>
     {/* <div id="spinner" className="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -65,10 +73,11 @@ const HomePage = () => {
         </div>
     </nav>
     <div className="container-fluid p-0 mb-5">
-        <div id="header-carousel" className="carousel slide" data-bs-ride="carousel">
-            <div className="carousel-inner">
-                <div className="carousel-item active">
-                    <img className="w-100" src={"img/carousel-bg-1.jpg"} alt="Image"/>
+        <div id="header-carousel" className="carousel slide" data-bs-ride="carousel" >
+            <div className="carousel-inner" >
+            <Carousel>
+            <Carousel.Item interval={3000}>
+                    <img className="w-100" src={carouselbg1} alt="Image"/>
                     <div className="carousel-caption d-flex align-items-center">
                         <div className="container">
                             <div className="row align-items-center justify-content-center justify-content-lg-start">
@@ -78,14 +87,15 @@ const HomePage = () => {
                                     <a href="" className="btn btn-primary py-3 px-5 animated slideInDown">Learn More<i className="fa fa-arrow-right ms-3"></i></a>
                                 </div>
                                 <div className="col-lg-5 d-none d-lg-flex animated zoomIn">
-                                    <img className="img-fluid" src="img/carousel-1.png" alt=""/>
+                                    <img className="img-fluid" src={carousel1} alt=""/>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="carousel-item">
-                    <img className="w-100" src="img/carousel-bg-2.jpg" alt="Image"/>
+                
+                </Carousel.Item>
+                <Carousel.Item interval={3000}>
+                    <img className="w-100" src={carouselbg2} alt="Image"/>
                     <div className="carousel-caption d-flex align-items-center">
                         <div className="container">
                             <div className="row align-items-center justify-content-center justify-content-lg-start">
@@ -95,14 +105,16 @@ const HomePage = () => {
                                     <a href="" className="btn btn-primary py-3 px-5 animated slideInDown">Learn More<i className="fa fa-arrow-right ms-3"></i></a>
                                 </div>
                                 <div className="col-lg-5 d-none d-lg-flex animated zoomIn">
-                                    <img className="img-fluid" src="img/carousel-2.png" alt=""/>
+                                    <img className="img-fluid" src={carousel2} alt=""/>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+            
+                </Carousel.Item>
+                </Carousel>
             </div>
-            <button className="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+            {/* <button className="carousel-control-prev" type="button" data-bs-target="#header-carousel"
                 data-bs-slide="prev">
                 <span className="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Previous</span>
@@ -111,7 +123,7 @@ const HomePage = () => {
                 data-bs-slide="next">
                 <span className="carousel-control-next-icon" aria-hidden="true"></span>
                 <span className="visually-hidden">Next</span>
-            </button>
+            </button> */}
         </div>
     </div>
 
@@ -384,9 +396,12 @@ const HomePage = () => {
                             <div className="row g-3">
                                 <div className="col-12 col-sm-6">
                                     {/* <input type="text" className="form-control border-0" placeholder="Your Name" style="height: 55px;"> */}
+                                    <input type="text" value={inputName} onChange={e => setinputName(e.target.value)} placeholder='Name'/>
+
                                 </div>
                                 <div className="col-12 col-sm-6">
                                     {/* <input type="email" className="form-control border-0" placeholder="Your Email" style="height: 55px;"> */}
+                                    <input type="text" value={inputEmail} onChange={e => setinputEmail(e.target.value)} placeholder='Email' />
                                 </div>
                                 <div className="col-12 col-sm-6">
                                     <select className="form-select border-0" 
