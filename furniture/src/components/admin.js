@@ -1,9 +1,9 @@
 // Import the necessary Firebase libraries
 import React, { useState, useEffect } from 'react';
 
-import { initializeApp } from "firebase/app";
-import { getAuth,signInWithEmailAndPassword  } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from 'firebase/app';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc,getDocs } from 'firebase/firestore';
 
 
 // Create a Firebase configuration object
@@ -72,7 +72,36 @@ const HomePage = () => {
   const [traits, setTraits] = useState('');
   const [category, setCategory] = useState('');
   const [image, setImage] = useState(null);
+  const [bedroomProducts, setBedroomProducts] = useState([]);
+  const [sofaProducts, setSofaProducts] = useState([]);
+  const [diningTableProducts, setDiningTableProducts] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [products, setProducts] = useState([]);
+
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        // Fetch products from Firestore and listen for real-time updates
+        const querySnapshot =await getDocs(collection(db,'bedroom'));
+        console.log(querySnapshot)
+        const productsData = querySnapshot.docs.map((doc) => doc.data());
+        // console.log(productsData)
+        setBedroomProducts(productsData);
+        const sofasnap  = await getDocs(collection(db, 'sofa'));
+        const sofaproductsData = sofasnap.docs.map((doc) => doc.data());
+        setSofaProducts(sofaproductsData);
+        const dinsap  = await getDocs(collection(db, 'dining table'));
+        const dinprodu = dinsap.docs.map((doc) => doc.data());
+        setDiningTableProducts(dinprodu);
+        // console.log(bedroomProducts)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchProducts();
+  }, [bedroomProducts,sofaProducts,diningTableProducts]);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -87,7 +116,7 @@ const HomePage = () => {
   };
 
   const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
+    setSelectedCategory(event.target.value);
   };
 
   const handleImageChange = (event) => {
@@ -95,7 +124,33 @@ const HomePage = () => {
     setImage(file);
   };
 
-  const handleAddProduct = () => {
+  // const handleAddProduct = () => {
+  //   const newProduct = {
+  //     name,
+  //     price,
+  //     traits,
+  //     category,
+  //     image,
+  //   };
+  //   // print(selectedCategory)
+  //   if (selectedCategory === 'bedroom') {
+  //     setBedroomProducts((prevProducts) => [...prevProducts, newProduct]);
+  //     console.log(bedroomProducts)
+  //   } else if (selectedCategory === 'sofa') {
+  //     setSofaProducts((prevProducts) => [...prevProducts, newProduct]);
+  //   } else if (selectedCategory === 'dining table') {
+  //     setDiningTableProducts((prevProducts) => [...prevProducts, newProduct]);
+  //   }
+
+  //   // Clear input fields and image after adding product
+  //   setName('');
+  //   setPrice('');
+  //   setTraits('');
+  //   setCategory('');
+  //   setImage(null);
+  // };
+
+  const handleAddProduct = async () => {
     const newProduct = {
       name,
       price,
@@ -104,21 +159,66 @@ const HomePage = () => {
       image,
     };
 
-    setProducts((prevProducts) => [...prevProducts, newProduct]);
-
-    // Clear input fields and image after adding product
-    setName('');
-    setPrice('');
-    setTraits('');
-    setCategory('');
-    setImage(null);
+    try {
+      // Add the new product to Firestore
+      if (selectedCategory=='bedroom'){
+      await addDoc(collection(db, 'bedroom'), newProduct);
+      setProducts((prevProducts) => [...prevProducts, newProduct]);
+      setName('');
+      setPrice('');
+      setTraits('');
+      setCategory('');
+      setImage(null);}
+      else if (selectedCategory=='sofa'){
+        await addDoc(collection(db, 'sofa'), newProduct);
+        setProducts((prevProducts) => [...prevProducts, newProduct]);
+        setName('');
+        setPrice('');
+        setTraits('');
+        setCategory('');
+        setImage(null);}
+        else if (selectedCategory=='dining table'){
+          await addDoc(collection(db, 'dining table'), newProduct);
+          setProducts((prevProducts) => [...prevProducts, newProduct]);
+          setName('');
+          setPrice('');
+          setTraits('');
+          setCategory('');
+          setImage(null);}
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const handleDeleteProduct = (index) => {
-    setProducts((prevProducts) => {
-      const updatedProducts = [...prevProducts];
-      updatedProducts.splice(index, 1);
-      return updatedProducts;
-    });
+  // const handlebedroomDeleteProduct = (index) => {
+  //   setBedroomProducts((prevProducts) => {
+  //     const updatedProducts = [...prevProducts];
+  //     updatedProducts.splice(index, 1);
+  //     return updatedProducts;
+  //   });
+  // };
+  // const handlesofaDeleteProduct = (index) => {
+  //   setSofaProducts((prevProducts) => {
+  //     const updatedProducts = [...prevProducts];
+  //     updatedProducts.splice(index, 1);
+  //     return updatedProducts;
+  //   });
+  // };
+  // const handlediningDeleteProduct = (index) => {
+  //   setDiningTableProducts((prevProducts) => {
+  //     const updatedProducts = [...prevProducts];
+  //     updatedProducts.splice(index, 1);
+  //     return updatedProducts;
+  //   });
+  // };
+
+  const handleDeleteProduct = async (productId, category) => {
+    try {
+      // Delete the product from Firestore
+      await deleteDoc(doc(db, 'products', category, productId));
+      setProducts((prevProducts) => prevProducts.filter((product) => product.id !== productId));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
 
@@ -159,16 +259,22 @@ const HomePage = () => {
             onChange={handleTraitsChange}
           />
         </div>
-        <div class="mb-3 mr-3">
-          <label for="category" class="form-label">Category:</label>
-          <input
-            type="text"
-            id="category"
-            class="form-control"
-            value={category}
-            onChange={handleCategoryChange}
-          />
-        </div>
+        <div className="mb-3 mr-3">
+        <label htmlFor="category" className="form-label">
+          Category:
+        </label>
+        <select
+          id="category"
+          className="form-control"
+          value={selectedCategory}
+          onChange={handleCategoryChange}
+        >
+          <option value="">Select Category</option>
+          <option value="bedroom">Bedroom</option>
+          <option value="sofa">Sofa</option>
+          <option value="dining table">Dining Table</option>
+        </select>
+      </div>
         <div class="mb-3 mr-1">
           <label for="image" class="form-label">Image:</label>
           <input
@@ -189,9 +295,9 @@ const HomePage = () => {
     </div>
   </div>
 </div>
-      <h2>Product List:</h2>
+      <h2>Bedroom Product List:</h2>
       <div className="row row-cols-1 row-cols-md-4 g-4 " >
-        {products.map((product, index) => (
+        {bedroomProducts.map((product, index) => (
           <div className="col" key={index}>
             <div className="card border-primary border-2" style={{ width: "304px"}} >
               {product.image && (
@@ -208,7 +314,65 @@ const HomePage = () => {
                 <p className="card-text">Traits: {product.traits}</p>
                 <button
                   type="button"
-                  onClick={() => handleDeleteProduct(index)}
+                  // onClick={() => handlebedroomDeleteProduct(index)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <h2>SOFA Product List:</h2>
+      <div className="row row-cols-1 row-cols-md-4 g-4 " >
+        {sofaProducts.map((product, index) => (
+          <div className="col" key={index}>
+            <div className="card border-primary border-2" style={{ width: "304px"}} >
+              {product.image && (
+                <img
+                  src={URL.createObjectURL(product.image)}
+                  alt={product.name}
+                  className="card-img-top"
+                  style={{ objectFit: "cover", width: "300px", height: "300px" }}
+                />
+              )}
+              <div className="card-body">
+                <h5 className="card-title">{product.name}</h5>
+                <p className="card-text">Price: {product.price}</p>
+                <p className="card-text">Traits: {product.traits}</p>
+                <button
+                  type="button"
+                  // onClick={() => handlesofaDeleteProduct(index)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <h2>Dining Table Products:</h2>
+      <div className="row row-cols-1 row-cols-md-4 g-4 " >
+        {diningTableProducts.map((product, index) => (
+          <div className="col" key={index}>
+            <div className="card border-primary border-2" style={{ width: "304px"}} >
+              {product.image && (
+                <img
+                  src={URL.createObjectURL(product.image)}
+                  alt={product.name}
+                  className="card-img-top"
+                  style={{ objectFit: "cover", width: "300px", height: "300px" }}
+                />
+              )}
+              <div className="card-body">
+                <h5 className="card-title">{product.name}</h5>
+                <p className="card-text">Price: {product.price}</p>
+                <p className="card-text">Traits: {product.traits}</p>
+                <button
+                  type="button"
+                  // onClick={() => handlediningDeleteProduct(index)}
                   className="btn btn-danger"
                 >
                   Delete
