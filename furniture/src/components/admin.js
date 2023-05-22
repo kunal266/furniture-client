@@ -319,7 +319,7 @@ const HomePage = () => {
     </div>
   </div>
 </div>
-      <h2>Bedroom Product List:</h2>
+      {/* <h2>Bedroom Product List:</h2>
       <div className="row row-cols-1 row-cols-md-4 g-4 ml-3  p-3" >
         {bedroomProducts.map((product, index) => (
           <div className="col" key={index}>
@@ -399,7 +399,7 @@ const HomePage = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 
