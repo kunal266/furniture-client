@@ -77,7 +77,7 @@ const HomePage = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [products, setProducts] = useState([]);
   const [url, setUrl] = useState('');
-
+  const [selectedSubCategory,setSelectedSubCategory]=useState('');
 
   const fetchProducts = async () => {
     try {
@@ -121,6 +121,9 @@ const HomePage = () => {
     setSelectedCategory(event.target.value);
   };
 
+  const handleSubCategoryChange = (event) => {
+    setSelectedSubCategory(event.target.value);
+  };
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setImage(file);
@@ -298,6 +301,38 @@ const HomePage = () => {
           <option value="sofa">Sofa</option>
           <option value="dining table">Dining Table</option>
         </select>
+      </div>
+      <div className="mb-3 mr-3">
+        <label htmlFor="category" className="form-label">
+          Sub-Category:
+        </label>
+        {(selectedCategory==="bedroom")?<select
+          id="subcategory"
+          className="form-control"
+          value={selectedSubCategory}
+          onChange={handleSubCategoryChange}
+        >
+          <option value="">Select Sub-Category</option>
+          <option value="bed">Bedroom</option>
+          <option value="dressing">Sofa</option>
+          <option value="night stand">Dining Table</option>
+        </select>:null}
+        {(selectedCategory==="sofa")?<select
+          id="subcategory"
+          className="form-control"
+          value={selectedSubCategory}
+          onChange={handleSubCategoryChange}
+        >
+          <option value="">Select Sub-Category</option>
+          <option value="bed">Bedroom</option>
+        </select>:<select
+          id="subcategory"
+          className="form-control"
+          value={selectedSubCategory}
+          onChange={handleSubCategoryChange}
+        >
+          <option value="">Select Sub-Category</option>
+        </select>}
       </div>
         <div class="mb-3 mr-1">
           <label for="image" class="form-label">Image:</label>

@@ -17,10 +17,10 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
             <div className="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" className="nav-item nav-link active">Home</a>
-                <a href="about.html" className="nav-item nav-link">Shop</a>
-                <a href="contact.html" className="nav-item nav-link">Interior</a>
-                <a href="contact.html" className="nav-item nav-link">
+                <a href="index.html" className="nav-item nav-link active" style={{ color: 'black',cursor: 'pointer' }}>Home</a>
+                <a href="about.html" className="nav-item nav-link" style={{ color: 'black',cursor: 'pointer' }}>Shop</a>
+                <a href="contact.html" className="nav-item nav-link" style={{ color: 'black',cursor: 'pointer' }}>Interior</a>
+                <a href="contact.html" className="nav-item nav-link" style={{ color: 'black',cursor: 'pointer' }}>
                 Cart</a>
             </div>
             <a href="" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get A Quote<i className="fa fa-arrow-right ms-3"></i></a>

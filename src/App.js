@@ -27,15 +27,15 @@ const App = ()=>{
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
             <div className="navbar-nav ms-auto p-4 p-lg-0">
-                <a  onClick={()=>setSite(<HomePage/>)} className="nav-item nav-link">Home</a>
-                <a  onClick={()=>setSite(<ShopPage/>)} className="nav-item nav-link">Shop</a>
-                <a  onClick={()=>setSite(<Interior/>)} className="nav-item nav-link">Interior</a>
-                <a  onClick={()=>setSite(<Cart/>)} className="nav-item nav-link">Cart</a>
+                <a  onClick={()=>setSite(<HomePage/>)} className="nav-item nav-link" style={{ cursor: 'pointer' }}>Home</a>
+                <a  onClick={()=>setSite(<ShopPage/>)} className="nav-item nav-link"style={{ cursor: 'pointer' }}>Shop</a>
+                <a  onClick={()=>setSite(<Interior/>)} className="nav-item nav-link" style={{ cursor: 'pointer' }}>Interior</a>
+                <a  onClick={()=>setSite(<Cart/>)} className="nav-item nav-link" style={{ cursor: 'pointer' }}>Cart</a>
             </div>
             <a href="" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get A Quote<i className="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
-    {/* <Admin/> */}
+    <Admin/>
       {site}
     </div>
   )
