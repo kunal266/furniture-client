@@ -79,9 +79,10 @@ const HomePage = () => {
   const [url, setUrl] = useState('');
   const [selectedSubCategory,setSelectedSubCategory]=useState('');
   const [optionChange,setoptionChange] = useState('');
+  const [prodId,setProdId]=useState(0);
   const fetchProducts = async () => {
     try {
-      // Fetch products from Firestore and listen for real-time updates
+      // Fetch products from Firestore and listen htmlFor real-time updates
       const querySnapshot =await getDocs(collection(db,'bedroom'));
       // console.log(querySnapshot)
       const productsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -178,6 +179,9 @@ const HomePage = () => {
     setImage(file);
   };
 
+  const handleIdChange = (event)=>{
+    setProdId(event.target.value);
+  }
   const handleAddProduct = async () => {
    
      
@@ -200,6 +204,7 @@ const HomePage = () => {
            console.log(urll)
            const newProduct = {
             name,
+            prodId,
             price,
             customization,
             category,
@@ -304,10 +309,10 @@ const HomePage = () => {
       <h1>Product List</h1>
       <div className="container">
   <div className="row">
-    <div className="row-6">
-      <form className="row row-cols-1 row-cols-md-6 g-4">
+    <div className="row-4">
+      <form className="row row-cols-1 row-cols-md-4 g-4">
         <div className="mb-3 mr-3">
-          <label for="name" className="form-label">Name:</label>
+          <label htmlFor="name" className="form-label">Name:</label>
           <input
             type="text"
             id="name"
@@ -317,7 +322,17 @@ const HomePage = () => {
           />
         </div>
         <div className="mb-3 mr-3">
-          <label for="price" className="form-label">Price:</label>
+          <label htmlFor="name" className="form-label">ID:</label>
+          <input
+            type="text"
+            id="name"
+            className="form-control"
+            value={prodId}
+            onChange={handleIdChange}
+          />
+        </div>
+        <div className="mb-3 mr-3">
+          <label htmlFor="price" className="form-label">Price:</label>
           <input
             type="text"
             id="price"
@@ -327,7 +342,7 @@ const HomePage = () => {
           />
         </div>
         <div className="mb-3 mr-3">
-          <label for="customization" className="form-label">customization:</label>
+          <label htmlFor="customization" className="form-label">customization:</label>
           <input
             type="text"
             id="customization"
@@ -367,7 +382,7 @@ const HomePage = () => {
         </div>
       
         <div className="mb-3 mr-1">
-          <label for="image" className="form-label">Image:</label>
+          <label htmlFor="image" className="form-label">Image:</label>
           <input
             type="file"
             id="image"
