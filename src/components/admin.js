@@ -68,7 +68,7 @@ const LoginForm = () => {
 const HomePage = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-  const [traits, setTraits] = useState('');
+  const [customization, setCustomization] = useState('');
   const [category, setCategory] = useState('');
   const [image, setImage] = useState(null);
   const [bedroomProducts, setBedroomProducts] = useState([]);
@@ -78,7 +78,7 @@ const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [url, setUrl] = useState('');
   const [selectedSubCategory,setSelectedSubCategory]=useState('');
-
+  const [optionChange,setoptionChange] = useState('');
   const fetchProducts = async () => {
     try {
       // Fetch products from Firestore and listen for real-time updates
@@ -114,11 +114,60 @@ const HomePage = () => {
   };
 
   const handleTraitsChange = (event) => {
-    setTraits(event.target.value);
+    setCustomization(event.target.value);
   };
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
+    if (event.target.value==="sofa"){
+        setoptionChange(
+          <select
+          id="subcategory"
+          className="form-control"
+          value={selectedSubCategory}
+          onChange={handleSubCategoryChange}
+        >
+          <option value="">Select Sub-Category</option>
+          <option value="sofa">Sofa</option>
+          <option value="sofacum">Sofa Cum Bed</option>
+        </select>
+          )}
+      else if (event.target.value==="bedroom"){
+        setoptionChange(
+          <select
+          id="subcategory"
+          className="form-control"
+          value={selectedSubCategory}
+          onChange={handleSubCategoryChange}
+        >
+          <option value="">Select Sub-Category</option>
+          <option value="bed">Bed</option>
+          <option value="dressing">Dressing Table</option>
+          <option value="night stand">Night Stand</option>
+        </select>)}
+      else if (event.target.value==="dining table"){
+        setoptionChange(
+          <select
+          id="subcategory"
+          className="form-control"
+          value={selectedSubCategory}
+          onChange={handleSubCategoryChange}
+        >
+          <option value="">Select Sub-Category</option>
+          <option value="diningTable">Dining Table</option>
+          <option value="diningChair">Dining Chair</option>
+        </select>)}
+      else {
+        setoptionChange(
+          <select
+          id="subcategory"
+          className="form-control"
+          value={selectedSubCategory}
+          onChange={handleSubCategoryChange}
+        >
+          <option value="">Select Category</option>
+        </select>)
+      }
   };
 
   const handleSubCategoryChange = (event) => {
@@ -152,8 +201,9 @@ const HomePage = () => {
            const newProduct = {
             name,
             price,
-            traits,
+            customization,
             category,
+            selectedSubCategory,
             urll,
           };
           // Add the new product to Firestore
@@ -163,7 +213,7 @@ const HomePage = () => {
           setProducts((prevProducts) => [...prevProducts, newProduct]);
           setName('');
           setPrice('');
-          setTraits('');
+          setCustomization('');
           setCategory('');
           // setUrl('');
         }
@@ -172,7 +222,7 @@ const HomePage = () => {
             setProducts((prevProducts) => [...prevProducts, newProduct]);
             setName('');
             setPrice('');
-            setTraits('');
+            setCustomization('');
             setCategory('');
             setUrl('');}
           else if (selectedCategory==='dining table'){
@@ -180,7 +230,7 @@ const HomePage = () => {
             setProducts((prevProducts) => [...prevProducts, newProduct]);
             setName('');
             setPrice('');
-            setTraits('');
+            setCustomization('');
             setCategory('');
             setUrl('');}
           //   const docRef = doc(firestore, 'images', image.name); //get document reference
@@ -252,37 +302,37 @@ const HomePage = () => {
   return (
     <div>
       <h1>Product List</h1>
-      <div class="container">
-  <div class="row">
-    <div class="row-6">
+      <div className="container">
+  <div className="row">
+    <div className="row-6">
       <form className="row row-cols-1 row-cols-md-6 g-4">
-        <div class="mb-3 mr-3">
-          <label for="name" class="form-label">Name:</label>
+        <div className="mb-3 mr-3">
+          <label for="name" className="form-label">Name:</label>
           <input
             type="text"
             id="name"
-            class="form-control"
+            className="form-control"
             value={name}
             onChange={handleNameChange}
           />
         </div>
-        <div class="mb-3 mr-3">
-          <label for="price" class="form-label">Price:</label>
+        <div className="mb-3 mr-3">
+          <label for="price" className="form-label">Price:</label>
           <input
             type="text"
             id="price"
-            class="form-control"
+            className="form-control"
             value={price}
             onChange={handlePriceChange}
           />
         </div>
-        <div class="mb-3 mr-3">
-          <label for="traits" class="form-label">Traits:</label>
+        <div className="mb-3 mr-3">
+          <label for="customization" className="form-label">customization:</label>
           <input
             type="text"
-            id="traits"
-            class="form-control"
-            value={traits}
+            id="customization"
+            className="form-control"
+            value={customization}
             onChange={handleTraitsChange}
           />
         </div>
@@ -306,47 +356,29 @@ const HomePage = () => {
         <label htmlFor="category" className="form-label">
           Sub-Category:
         </label>
-        {(selectedCategory==="bedroom")?<select
+        {optionChange?optionChange:<select
           id="subcategory"
           className="form-control"
           value={selectedSubCategory}
           onChange={handleSubCategoryChange}
         >
-          <option value="">Select Sub-Category</option>
-          <option value="bed">Bedroom</option>
-          <option value="dressing">Sofa</option>
-          <option value="night stand">Dining Table</option>
-        </select>:null}
-        {(selectedCategory==="sofa")?<select
-          id="subcategory"
-          className="form-control"
-          value={selectedSubCategory}
-          onChange={handleSubCategoryChange}
-        >
-          <option value="">Select Sub-Category</option>
-          <option value="bed">Bedroom</option>
-        </select>:<select
-          id="subcategory"
-          className="form-control"
-          value={selectedSubCategory}
-          onChange={handleSubCategoryChange}
-        >
-          <option value="">Select Sub-Category</option>
+          <option value="">Select Category</option>
         </select>}
-      </div>
-        <div class="mb-3 mr-1">
-          <label for="image" class="form-label">Image:</label>
+        </div>
+      
+        <div className="mb-3 mr-1">
+          <label for="image" className="form-label">Image:</label>
           <input
             type="file"
             id="image"
-            class="form-control"
+            className="form-control"
             onChange={handleImageChange}
           />
         </div>
         <button
           type="button"
           onClick={handleAddProduct}
-          class="btn btn-primary"
+          className="btn btn-primary"
         >
           Add Product
         </button>
