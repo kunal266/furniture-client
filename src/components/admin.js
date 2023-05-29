@@ -207,7 +207,7 @@ const HomePage = () => {
             prodId,
             price,
             customization,
-            category,
+            selectedCategory,
             selectedSubCategory,
             urll,
           };
@@ -306,7 +306,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Product List</h1>
+      {/* <h1>Product List</h1> */}
       <div className="container">
   <div className="row">
     <div className="row-4">

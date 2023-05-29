@@ -79,28 +79,37 @@ const ShopPage = () => {
     }
   };
 
+  const filters =(prodlist,fil) =>{
+    // console.log("filters")
+  const filteredList = prodlist.filter(product =>
+    product.selectedSubCategory === fil
+  );
+  // console.log(filteredList)
+  return filteredList;
+  }
+
   return (
     <div className=" w-100" >
       <div className="row">
         <div className="col-lg-2 px-5 " style={{backgroundColor:'#f2f2f2',height:'100vh'}}>
           <a className='row mt-4 px-2 fw-bold' onClick={()=>setCurrentList(bedroomProducts)}  style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Bedroom Product List</a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(bedroomProducts)}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Bed </a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(bedroomProducts)}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Dressing Table </a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(bedroomProducts)}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Night Stand </a>
+          <a className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,"bed"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Bed </a>
+          <a className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,"dressing"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Dressing Table </a>
+          <a className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,"night stand"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Night Stand </a>
           <a className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(sofaProducts)}  style={{ color: 'black',cursor: 'pointer',fontSize:'19px' }}>Sofa Product List</a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(bedroomProducts)}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Sofa Cum Bed </a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(bedroomProducts)}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Sofa </a>
+          <a className='row px-4 ' onClick={()=>setCurrentList(filters(sofaProducts,"sofacum"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Sofa Cum Bed </a>
+          <a className='row px-4 ' onClick={()=>setCurrentList(filters(sofaProducts,"sofa"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Sofa </a>
           <a className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(diningTableProducts)}  style={{ color: 'black',cursor: 'pointer' ,fontSize:'19px'}}>Dining Product List</a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(bedroomProducts)}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Dining Table </a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(bedroomProducts)}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Dining Chairs </a>
+          <a className='row px-4 ' onClick={()=>setCurrentList(filters(diningTableProducts,"diningTable"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Dining Table </a>
+          <a className='row px-4 ' onClick={()=>setCurrentList(filters(diningTableProducts,"diningChair"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Dining Chairs </a>
         
         </div>
-        <div className="col-lg-8">
-          <div className="row row-cols-1 row-cols-md-4 g-4 pt-2 px-3" >
+        <div className="col-lg-10">
+          <div className="row row-cols-1 row-cols-md-5 g-4 pt-2 px-3" >
             {currentList.map((product, index) => (
               <div className="col" key={index}>
                 <div className="card " style={{ 
-                  width: "281px",
+                  width: "282px",
                 backgroundColor:'#f2f2f2'}} >
                     <img
                       src={product.urll}
@@ -114,14 +123,21 @@ const ShopPage = () => {
                     <h5 className="card-title">{product.name}</h5>
                     <div className="card-text">Price: {product.price}</div>
                     
-                    <div className="card-text">Traits: {product.traits}</div>
+                    <div className="card-text">Traits: {product.customization}</div>
+                    <button
+                  type="button"
+                  onClick={() => handleDeleteProduct(product.id, product.selectedCategory)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
                   </div>
                 </div>
               </div>
             ))}
           </div>
       </div>
-        <div className="col-lg-2  pr-5 px-5 text-end"  style={{backgroundColor:'#f2f2f2',height:'100vh'}}>Column 3</div>
+        {/* <div className="col-lg-2  pr-5 px-5 text-end"  style={{backgroundColor:'#f2f2f2',height:'100vh'}}>Column 3</div> */}
       </div>
     </div>
   );
