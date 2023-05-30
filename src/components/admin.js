@@ -45,23 +45,57 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <div style={{ 
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      width: "100vw",
+      height: "100vh",
+      border: "1px solid black",
+      borderRadius: "10px"
+    }}>
+      <h1 style={{ fontSize: "24px" }}>Login</h1>
       <input
         type="email"
         value={email}
         placeholder="Email"
         onChange={(e) => setEmail(e.target.value)}
+        style={{ 
+          width: "30%",
+          padding: "10px",
+          marginBottom: "10px",
+          borderRadius: "5px"
+        }}
       />
       <input
         type="password"
         value={password}
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
+        style={{ 
+          width: "30%",
+          padding: "10px",
+          marginBottom: "10px",
+          borderRadius: "5px"
+        }}
       />
-      <button onClick={handleSubmit}>Login</button>
+      <button
+        onClick={handleSubmit}
+        style={{ 
+          width: "30%",
+          padding: "10px",
+          borderRadius: "5px",
+          backgroundColor: "blue",
+          color: "white",
+          fontWeight: "bold"
+        }}
+      >
+        Login
+      </button>
     </div>
   );
+  
 };
 
 // Create a component to display the home page
@@ -401,8 +435,8 @@ const HomePage = () => {
     </div>
   </div>
 </div>
-      {/* <h2>Bedroom Product List:</h2>
-      <div className="row row-cols-1 row-cols-md-4 g-4 ml-3  p-3" >
+      <h2>Bedroom Product List:</h2>
+      <div className="row row-cols-1 row-cols-md-5 g-4 ml-3  p-3" >
         {bedroomProducts.map((product, index) => (
           <div className="col" key={index}>
             <div className="card border-primary border-2" style={{ width: "304px"}} >
@@ -415,7 +449,7 @@ const HomePage = () => {
               <div className="card-body">
                 <h5 className="card-title">{product.name}</h5>
                 <p className="card-text">Price: {product.price}</p>
-                <p className="card-text">Traits: {product.traits}</p>
+                <p className="card-text">Traits: {product.customization}</p>
                 <button
                   type="button"
                   onClick={() => handleDeleteProduct(product.id, 'bedroom')}
@@ -429,7 +463,7 @@ const HomePage = () => {
         ))}
       </div>
       <h2>SOFA Product List:</h2>
-      <div className="row row-cols-1 row-cols-md-4 g-4 p-3" >
+      <div className="row row-cols-1 row-cols-md-5 g-4 p-3" >
         {sofaProducts.map((product, index) => (
           <div className="col " key={index}>
             <div className="card border-primary border-2" style={{ width: "304px"}} >
@@ -442,7 +476,7 @@ const HomePage = () => {
               <div className="card-body">
                 <h5 className="card-title">{product.name}</h5>
                 <p className="card-text">Price: {product.price}</p>
-                <p className="card-text">Traits: {product.traits}</p>
+                <p className="card-text">Traits: {product.customization}</p>
                 <button
                   type="button"
                   onClick={() => handleDeleteProduct(product.id, 'sofa')}
@@ -456,7 +490,7 @@ const HomePage = () => {
         ))}
       </div>
       <h2>Dining Table Products:</h2>
-      <div className="row row-cols-1 row-cols-md-4 g-4  p-3" >
+      <div className="row row-cols-1 row-cols-md-5 g-4  p-3" >
         {diningTableProducts.map((product, index) => (
           <div className="col" key={index}>
             <div className="card border-primary border-2" style={{ width: "304px"}} >
@@ -469,7 +503,7 @@ const HomePage = () => {
               <div className="card-body">
                 <h5 className="card-title">{product.name}</h5>
                 <p className="card-text">Price: {product.price}</p>
-                <p className="card-text">Traits: {product.traits}</p>
+                <p className="card-text">Traits: {product.customization}</p>
                 <button
                   type="button"
                   onClick={() => handleDeleteProduct(product.id, 'dining table')}
@@ -481,7 +515,7 @@ const HomePage = () => {
             </div>
           </div>
         ))}
-      </div> */}
+      </div>
     </div>
   );
 
@@ -492,9 +526,9 @@ const HomePage = () => {
   return (
     <div>
       
-      {/* {user? null:<LoginForm />} */}
-      {/* {user? <HomePage />:null} */}
-      <HomePage/>
+      {user? null:<LoginForm />}
+      {user? <HomePage />:null}
+      {/* <HomePage/> */}
     </div>
   );
 };

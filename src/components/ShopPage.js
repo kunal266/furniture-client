@@ -3,6 +3,7 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc,getDocs } from 'firebase/firestore';
 import {getStorage,ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
+import {Link} from 'react-router-dom';
 const firebaseConfig = {
   apiKey: "AIzaSyCLMsu-6pXKEVV34-o7WCIwNqc-jZUUSIc",
   authDomain: "furniture-3a7d0.firebaseapp.com",
@@ -15,7 +16,15 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
-
+const cardStyle = {
+  width: '282px',
+  backgroundColor: '#f2f2f2',
+  transition: 'transform 0.3s ease',
+  transformOrigin: 'center',
+  '&:hover': {
+    transform: 'scale(1.4)',
+  },
+};
 const ShopPage = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
@@ -108,9 +117,9 @@ const ShopPage = () => {
           <div className="row row-cols-1 row-cols-md-5 g-4 pt-2 px-3" >
             {currentList.map((product, index) => (
               <div className="col" key={index}>
-                <div className="card " style={{ 
-                  width: "282px",
-                backgroundColor:'#f2f2f2'}} >
+                {/* {console.log(product)} */}
+                <Link to={`/${product.selectedCategory}/${product.id}`} className="card-link" style={{ color: 'black' }} target="_blank"  >
+                <div className="card " style={cardStyle} >
                     <img
                       src={product.urll}
                       alt={product.name}
@@ -124,15 +133,16 @@ const ShopPage = () => {
                     <div className="card-text">Price: {product.price}</div>
                     
                     <div className="card-text">Traits: {product.customization}</div>
-                    <button
+                    {/* <button
                   type="button"
                   onClick={() => handleDeleteProduct(product.id, product.selectedCategory)}
                   className="btn btn-danger"
                 >
                   Delete
-                </button>
+                </button> */}
                   </div>
                 </div>
+                </Link>
               </div>
             ))}
           </div>
