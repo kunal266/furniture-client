@@ -4,6 +4,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc,getDocs } from 'firebase/firestore';
 import {getStorage,ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
 import {Link} from 'react-router-dom';
+import Modal from './modal';
 const firebaseConfig = {
   apiKey: "AIzaSyCLMsu-6pXKEVV34-o7WCIwNqc-jZUUSIc",
   authDomain: "furniture-3a7d0.firebaseapp.com",
@@ -24,6 +25,7 @@ const cardStyle = {
   '&:hover': {
     transform: 'scale(1.4)',
   },
+  cursor: 'pointer'
 };
 const ShopPage = () => {
   const [name, setName] = useState('');
@@ -36,6 +38,8 @@ const ShopPage = () => {
   const [diningTableProducts, setDiningTableProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [currentList,setCurrentList] = useState(bedroomProducts);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
   const fetchProducts = async () => {
     try {
       // Fetch products from Firestore and listen for real-time updates
@@ -100,7 +104,7 @@ const ShopPage = () => {
   return (
     <div className=" w-100" >
       <div className="row">
-        <div className="col-lg-2 px-5 " style={{backgroundColor:'#f2f2f2',height:'100vh'}}>
+        <div className="col-lg-2 px-5 " style={{backgroundColor:'#f2f2f2',height:'85vh'}}>
           <a className='row mt-4 px-2 fw-bold' onClick={()=>setCurrentList(bedroomProducts)}  style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Bedroom Product List</a>
           <a className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,"bed"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Bed </a>
           <a className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,"dressing"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Dressing Table </a>
@@ -114,12 +118,12 @@ const ShopPage = () => {
         
         </div>
         <div className="col-lg-10">
-          <div className="row row-cols-1 row-cols-md-5 g-4 pt-2 px-3" >
+          <div className="row row-cols-1 row-cols-md-5 pt-2" >
             {currentList.map((product, index) => (
               <div className="col" key={index}>
                 {/* {console.log(product)} */}
-                <Link to={`/${product.selectedCategory}/${product.id}`} className="card-link" style={{ color: 'black' }} target="_blank"  >
-                <div className="card " style={cardStyle} >
+                {/* <Link to={`/${product.selectedCategory}/${product.id}`} className="card-link" style={{ color: 'black' }} target="_blank"  > */}
+                <div className="card " style={cardStyle} onClick={() => setSelectedProduct(product)}>
                     <img
                       src={product.urll}
                       alt={product.name}
@@ -133,22 +137,30 @@ const ShopPage = () => {
                     <div className="card-text">Price: {product.price}</div>
                     
                     <div className="card-text">Traits: {product.customization}</div>
+
                     {/* <button
                   type="button"
                   onClick={() => handleDeleteProduct(product.id, product.selectedCategory)}
                   className="btn btn-danger"
-                >
+                  >
                   Delete
                 </button> */}
                   </div>
                 </div>
-                </Link>
+                {/* </Link> */}
               </div>
             ))}
           </div>
       </div>
         {/* <div className="col-lg-2  pr-5 px-5 text-end"  style={{backgroundColor:'#f2f2f2',height:'100vh'}}>Column 3</div> */}
       </div>
+            {selectedProduct && (
+              <Modal
+                isOpen={true} // Pass the "isOpen" prop as true to open the modal
+                product={selectedProduct} // Pass the selected product as a prop to the modal
+                closeModal={() => setSelectedProduct(null)} // Pass a function to close the modal
+              />
+            )}
     </div>
   );
 };

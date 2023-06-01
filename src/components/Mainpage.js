@@ -1,12 +1,12 @@
 import React,{useState,useEffect} from 'react';
-import Admin from './components/admin';
-import FurnitureDisplay from './components/products';
+import Admin from './admin';
+import FurnitureDisplay from './products';
 // import Navbar from './components/Navbar';
-import ShopPage from './components/ShopPage';
-import HomePage from './components/homepage';
-import AboutNav from './AboutNav';
-import Interior from './components/Interior';
-import Cart from './components/Cart';
+import ShopPage from './ShopPage';
+import HomePage from './homepage';
+import AboutNav from '../AboutNav';
+import Interior from './Interior';
+import Cart from './Cart';
 import {Link} from 'react-router-dom';
 
 const Mainpage = ()=>{

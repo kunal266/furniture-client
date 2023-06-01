@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{createContext, useContext,useState,useEffect} from 'react';
 // import Admin from './components/admin';
 // import FurnitureDisplay from './components/products';
 // // import Navbar from './components/Navbar';
@@ -9,21 +9,46 @@ import React,{useState,useEffect} from 'react';
 // import Cart from './components/Cart';
 
 import { BrowserRouter as Router, Routes, Route   } from 'react-router-dom';
-import Mainpage from './Mainpage';
-import ItemDetails from './ItemDetails';
+import Mainpage from './components/Mainpage';
+import ItemDetails from './components/ItemDetails';
 import Admin from './components/admin';
 import ShopPage from './components/ShopPage';
+import Modal from './components/modal'
+
+export const CartContext = createContext();
 const App = ()=>{
+  const [cart, setCart] = useState({});
+
+
+  const addToCart = (product) => {
+    
+    // const updatedCart = { ...cart };
+    // console.log(updatedCart)
+    if (cart[product.prodId]) {
+      // If the product is already in the cart, increase the count by 1
+      cart[product.prodId] += 1;
+      // localStorage.setItem(cart, JSON.stringify(cart));
+    } else {
+      // If the product is not in the cart, add it with count 1
+      cart[product.prodId] = 1;
+      // localStorage.setItem(cart, JSON.stringify(cart));
+    }
+    console.log(cart)
+      return cart;
+  };
+
   return (
+    <CartContext.Provider value={{ cart, addToCart }}>
     <Router>
       <Routes>
             <Route path="/" element={<Mainpage />} />
-             <Route path="/:category/:id"  element={<ItemDetails />} />
+             {/* <Route path="/:category/:id"  element={<ItemDetails />} /> */}
              {/* <Route path="/shop" element={<ShopPage/>}/> */}
-             <Route path="/admin" element={<Admin />} />
-
+             {/* <Route path="/admin" element={<Admin />} /> */}
+             {/* <Route path="/" element={<Modal />} /> */}
            </Routes>
          </Router>
+         </CartContext.Provider>
   )
 }
 export default App;
