@@ -39,7 +39,7 @@ const ShopPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [currentList,setCurrentList] = useState(bedroomProducts);
   const [selectedProduct, setSelectedProduct] = useState(null);
-
+  const [cartItems, setCartItems] = useState(0);
   const fetchProducts = async () => {
     try {
       // Fetch products from Firestore and listen for real-time updates
@@ -91,7 +91,25 @@ const ShopPage = () => {
       console.log(error);
     }
   };
+  const buttonStyle = {
+    padding: '0.5em',
+    width: '2em',
+    // height: '2em',
+    minWidth: '1em',
+    border: '1px solid black',
+    color: 'black',
+    cursor: 'pointer',
+    borderRadius: '8%',
+  };
 
+  const spanStyle = {
+    display: 'inline-block',
+    padding: '0.5em',
+    backgroundColor: 'lightgrey',
+    color: 'black',
+    width: '2em',
+    textAlign: 'center',
+  };
   const filters =(prodlist,fil) =>{
     // console.log("filters")
   const filteredList = prodlist.filter(product =>
@@ -100,7 +118,15 @@ const ShopPage = () => {
   // console.log(filteredList)
   return filteredList;
   }
+  const addToCart = () => {
+    setCartItems(cartItems + 1);
+  };
 
+  const removeFromCart = () => {
+    if (cartItems > 0) {
+      setCartItems(cartItems - 1);
+    }
+  };
   return (
     <div className=" w-100" >
       <div className="row">
@@ -137,7 +163,11 @@ const ShopPage = () => {
                     <div className="card-text">Price: {product.price}</div>
                     
                     <div className="card-text">Traits: {product.customization}</div>
-
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <button onClick={removeFromCart} style={buttonStyle}>-</button>
+                        <span style={spanStyle}>{cartItems}</span>
+                      <button onClick={addToCart} style={buttonStyle}>+</button>
+                    </div>
                     {/* <button
                   type="button"
                   onClick={() => handleDeleteProduct(product.id, product.selectedCategory)}
@@ -154,13 +184,6 @@ const ShopPage = () => {
       </div>
         {/* <div className="col-lg-2  pr-5 px-5 text-end"  style={{backgroundColor:'#f2f2f2',height:'100vh'}}>Column 3</div> */}
       </div>
-            {selectedProduct && (
-              <Modal
-                isOpen={true} // Pass the "isOpen" prop as true to open the modal
-                product={selectedProduct} // Pass the selected product as a prop to the modal
-                closeModal={() => setSelectedProduct(null)} // Pass a function to close the modal
-              />
-            )}
     </div>
   );
 };
