@@ -1,10 +1,13 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState,useContext} from 'react';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc,getDocs } from 'firebase/firestore';
 import {getStorage,ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
 import {Link} from 'react-router-dom';
 import Modal from './modal';
+import { CartContext } from '../App';
+import Cart from './Cart';
+
 const firebaseConfig = {
   apiKey: "AIzaSyCLMsu-6pXKEVV34-o7WCIwNqc-jZUUSIc",
   authDomain: "furniture-3a7d0.firebaseapp.com",
@@ -36,65 +39,77 @@ const ShopPage = () => {
   const [bedroomProducts, setBedroomProducts] = useState([]);
   const [sofaProducts, setSofaProducts] = useState([]);
   const [diningTableProducts, setDiningTableProducts] = useState([]);
+  const [centerTableProducts, setcenterTableProducts] = useState([]);
+  const [cupboardProducts, setcupboardProducts] = useState([]);
+  const [couchesProducts, setcouchesProducts] = useState([]);
+  const [dressingTableProducts, setdressingTableProducts] = useState([]);
+  const [sideTableProducts, setsideTableProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [currentList,setCurrentList] = useState(bedroomProducts);
+  const [currentList,setCurrentList] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cartItems, setCartItems] = useState(0);
-  const fetchProducts = async () => {
+  const [cupboardProduct,setcupboardProduct] = useState([]);
+  const { cart, addToCart  } = useContext(CartContext);
+
+
+
+
+  const fetchProducts = async (element) => {
     try {
       // Fetch products from Firestore and listen for real-time updates
-      const querySnapshot =await getDocs(collection(db,'bedroom'));
-      // console.log(querySnapshot)
+      // const querySnapshot =await getDocs(collection(db,'bedroom'));
+      // // console.log(querySnapshot)
+      // const productsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      // // console.log(productsData)
+      // setBedroomProducts(productsData);
+      // setCurrentList(productsData);
+      // const sofasnap  = await getDocs(collection(db, 'sofa'));
+      // const sofaproductsData = sofasnap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
+      // const dinsap  = await getDocs(collection(db, 'dining table'));
+      // const dinprodu = dinsap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
+      // setDiningTableProducts(dinprodu);
+      const querySnapshot = await getDocs(collection(db,element));
       const productsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+      if (element==='sofa'){
+
+        setCurrentList(productsData)
+      }
       // console.log(productsData)
-      setBedroomProducts(productsData);
-      setCurrentList(productsData);
-      const sofasnap  = await getDocs(collection(db, 'sofa'));
-      const sofaproductsData = sofasnap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
-      setSofaProducts(sofaproductsData);
-      const dinsap  = await getDocs(collection(db, 'dining table'));
-      const dinprodu = dinsap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
-      setDiningTableProducts(dinprodu);
+      
+      return productsData;
+      // // console.log(querySnapshot)
+      // const productsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       // console.log(bedroomProducts)
-      // setCurrentList(bedroomProducts)
     } catch (error) {
       console.log(error);
     }
   };
   
+      const fetchfirebase = async ()=>{
+        
+        setSofaProducts(await fetchProducts('sofa'))
+        // console.log(await fetchProducts('cupboard'))
+        setcupboardProducts(await fetchProducts('cupboard'))
+        setBedroomProducts(await fetchProducts('bed'))
+        setDiningTableProducts(await fetchProducts('diningTableChairs'))
+        setcenterTableProducts(await fetchProducts('centerTable'))
+        setcouchesProducts(await fetchProducts('couches'))
+        setdressingTableProducts(await fetchProducts('dressingtable'))
+        setsideTableProducts(await fetchProducts('sidetable'))
+      }
   
   useEffect(() => {
-  
-    fetchProducts();
+    fetchfirebase()
+    console.log(cart)
   }, []);
-  const handleDeleteProduct = async (productId, category) => {
-    console.log(productId)
-    try {
-      // Delete the product from Firestore
-      await deleteDoc(doc(db, category, productId));
-      
-      // Remove the deleted product from the local state
-      if (category === 'bedroom') {
-        setBedroomProducts((prevProducts) =>
-          prevProducts.filter((product) => product.id !== productId)
-        );
-      } else if (category === 'sofa') {
-        setSofaProducts((prevProducts) =>
-          prevProducts.filter((product) => product.id !== productId)
-        );
-      } else if (category === 'dining table') {
-        setDiningTableProducts((prevProducts) =>
-          prevProducts.filter((product) => product.id !== productId)
-        );
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+
   const buttonStyle = {
-    padding: '0.5em',
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 0.6em',
     width: '2em',
-    // height: '2em',
+    height: '2em',
     minWidth: '1em',
     border: '1px solid black',
     color: 'black',
@@ -103,12 +118,17 @@ const ShopPage = () => {
   };
 
   const spanStyle = {
-    display: 'inline-block',
-    padding: '0.5em',
-    backgroundColor: 'lightgrey',
+    display: 'flex',
+    alignItems: 'center',
+    padding: '0 0.7em',
+    margin: '0 2px',
+    // backgroundColor: 'lightgrey',
+    border: '1px solid black',
     color: 'black',
     width: '2em',
-    textAlign: 'center',
+    height: '2em',
+    borderRadius: '8%',
+    // textAlign: 'center',
   };
   const filters =(prodlist,fil) =>{
     // console.log("filters")
@@ -118,30 +138,59 @@ const ShopPage = () => {
   // console.log(filteredList)
   return filteredList;
   }
-  const addToCart = () => {
-    setCartItems(cartItems + 1);
+  const handleAddToCart = (product,action) => {
+    // console.log(product,action)
+    addToCart(product,action)
   };
 
-  const removeFromCart = () => {
-    if (cartItems > 0) {
-      setCartItems(cartItems - 1);
-    }
-  };
+  const categoryList = ['sofa','beds','cupboard','centerTable','diningTableChairs','couches','sidetable','dressingtable']
+  const sofaList = ['sofacumbed','sofawithlouger','sofa311','sofa32']
+  const bedlist = ['kingsize','queensize']
+  const cupboardlist = ['backpaintedglass','digitalglass','laminatefinish','walltowall']
+  const centertablelist = ['marbletop','woodentop','onextable','11','glasstop']
+  const diningtablelist = ['marbletopwoodenbase','marbletopsteelbase','glasstopsteelbase','11','woodendining']
   return (
     <div className=" w-100" >
       <div className="row">
-        <div className="col-lg-2 px-5 " style={{backgroundColor:'#f2f2f2',height:'85vh'}}>
-          <a className='row mt-4 px-2 fw-bold' onClick={()=>setCurrentList(bedroomProducts)}  style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Bedroom Product List</a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,"bed"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Bed </a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,"dressing"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Dressing Table </a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,"night stand"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Night Stand </a>
-          <a className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(sofaProducts)}  style={{ color: 'black',cursor: 'pointer',fontSize:'19px' }}>Sofa Product List</a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(filters(sofaProducts,"sofacum"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Sofa Cum Bed </a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(filters(sofaProducts,"sofa"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Sofa </a>
-          <a className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(diningTableProducts)}  style={{ color: 'black',cursor: 'pointer' ,fontSize:'19px'}}>Dining Product List</a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(filters(diningTableProducts,"diningTable"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Dining Table </a>
-          <a className='row px-4 ' onClick={()=>setCurrentList(filters(diningTableProducts,"diningChair"))}  style={{ color: 'black',cursor: 'pointer' }}>{" "}Dining Chairs </a>
-        
+        <div className="col-lg-2 px-5 " style={{backgroundColor:'#f2f2f2',height:'88vh'}}>
+          <a className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(sofaProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Sofa</a>
+          {sofaList.map((element,index)=>{
+            return (
+          <a className='row px-4 ' onClick={()=>setCurrentList(filters(sofaProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+
+            )
+          })}
+          <a className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(bedroomProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Beds</a>
+          {bedlist.map((element,index)=>{
+            return (
+          <a className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+
+            )
+          })}
+          <a className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(diningTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Dining Tables</a>
+          {diningtablelist.map((element,index)=>{
+            return (
+          <a className='row px-4 ' onClick={()=>setCurrentList(filters(diningTableProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+
+            )
+          })}
+          <a className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(centerTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Center Table</a>
+          {centertablelist.map((element,index)=>{
+            return (
+          <a className='row px-4 ' onClick={()=>setCurrentList(filters(centerTableProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+
+            )
+          })}
+          <a className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(cupboardProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Cupboards</a>
+          {cupboardlist.map((element,index)=>{
+            return (
+          <a className='row px-4 ' onClick={()=>setCurrentList(filters(cupboardProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+
+            )
+          })}
+          <a className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(couchesProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Couches</a>
+          <a className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(sideTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Side Tables</a>
+          <a className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(dressingTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Dressing Tables</a>
         </div>
         <div className="col-lg-10">
           <div className="row row-cols-1 row-cols-md-5 pt-2" >
@@ -164,9 +213,9 @@ const ShopPage = () => {
                     
                     <div className="card-text">Traits: {product.customization}</div>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <button onClick={removeFromCart} style={buttonStyle}>-</button>
-                        <span style={spanStyle}>{cartItems}</span>
-                      <button onClick={addToCart} style={buttonStyle}>+</button>
+                      <button onClick={()=>handleAddToCart(product,'remove')} style={buttonStyle}>-</button>
+                        <span style={spanStyle}>{cart[product.id]?cart[product.id][0]:0}</span>
+                      <button onClick={()=>handleAddToCart(product,'add')} style={buttonStyle}>+</button>
                     </div>
                     {/* <button
                   type="button"
