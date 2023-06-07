@@ -9,13 +9,16 @@ import { CartContext } from '../App';
 import Cart from './Cart';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCLMsu-6pXKEVV34-o7WCIwNqc-jZUUSIc",
-  authDomain: "furniture-3a7d0.firebaseapp.com",
-  projectId: "furniture-3a7d0",
-  storageBucket: "furniture-3a7d0.appspot.com",
-  messagingSenderId: "70034942573",
-  appId: "1:70034942573:web:b16d104668b2aa973fad64"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId:process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID
 };
+
+
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -52,22 +55,11 @@ const ShopPage = () => {
   const { cart, addToCart  } = useContext(CartContext);
 
 
+  // console.log(process.env.REACT_APP_FIREBASECONFIG)
 
-
+ 
   const fetchProducts = async (element) => {
     try {
-      // Fetch products from Firestore and listen for real-time updates
-      // const querySnapshot =await getDocs(collection(db,'bedroom'));
-      // // console.log(querySnapshot)
-      // const productsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      // // console.log(productsData)
-      // setBedroomProducts(productsData);
-      // setCurrentList(productsData);
-      // const sofasnap  = await getDocs(collection(db, 'sofa'));
-      // const sofaproductsData = sofasnap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
-      // const dinsap  = await getDocs(collection(db, 'dining table'));
-      // const dinprodu = dinsap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
-      // setDiningTableProducts(dinprodu);
       const querySnapshot = await getDocs(collection(db,element));
       const productsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       if (element==='sofa'){
@@ -142,7 +134,6 @@ const ShopPage = () => {
     // console.log(product,action)
     addToCart(product,action)
   };
-
   const categoryList = ['sofa','beds','cupboard','centerTable','diningTableChairs','couches','sidetable','dressingtable']
   const sofaList = ['sofacumbed','sofawithlouger','sofa311','sofa32']
   const bedlist = ['kingsize','queensize']
