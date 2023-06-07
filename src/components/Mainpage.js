@@ -19,7 +19,7 @@ const Mainpage = ()=>{
     <div className="App">
       <AboutNav/>
     {/* <FurnitureDisplay/> */}
-    <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+    <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0" style={{zIndex:99}}>
         <a href="index.html" className="navbar-brand d-flex align-items-center px-4 px-lg-5">
             <h2 className="m-0 text-primary"><i className="fa fa-car me-3"></i>Panache Interior</h2>
         </a>
@@ -32,12 +32,6 @@ const Mainpage = ()=>{
                 <a  onClick={()=>setSite(<ShopPage/>)} className="nav-item nav-link"style={{ cursor: 'pointer' }}>Shop</a>
                 <a  onClick={()=>setSite(<Interior/>)} className="nav-item nav-link" style={{ cursor: 'pointer' }}>Interior</a>
                 <a  onClick={()=>setSite(<Cart/>)} className="nav-item nav-link" style={{ cursor: 'pointer' }}>Cart</a>
-
-                {/* <Link to="/shop"  className="nav-item nav-link" style={{ cursor: 'pointer' }}>Home</Link>
-              
-                <Link to="/shop"    className="nav-item nav-link"style={{ cursor: 'pointer' }}>Shop</Link>
-                <Link to="/shop"    className="nav-item nav-link" style={{ cursor: 'pointer' }}>Interior</Link>
-                <Link to="/shop"  className="nav-item nav-link" style={{ cursor: 'pointer' }}>Cart</Link> */}
             </div>
             <a href="" className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get A Quote<i className="fa fa-arrow-right ms-3"></i></a>
         </div>
