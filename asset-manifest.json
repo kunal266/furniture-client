@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/furniture-client/static/css/main.e6c13ad2.css",
+    "main.js": "/furniture-client/static/js/main.24543803.js",
+    "static/js/787.4ea5a4ce.chunk.js": "/furniture-client/static/js/787.4ea5a4ce.chunk.js",
+    "static/media/carousel-bg-2.jpg": "/furniture-client/static/media/carousel-bg-2.09fb6ad79e953797cf19.jpg",
+    "static/media/carousel-bg-1.jpg": "/furniture-client/static/media/carousel-bg-1.312615edf2935273dd37.jpg",
+    "static/media/carousel-1.png": "/furniture-client/static/media/carousel-1.ddee30d0400928be4914.png",
+    "static/media/carousel-2.png": "/furniture-client/static/media/carousel-2.f7eeb3027339bc55dedb.png",
+    "index.html": "/furniture-client/index.html",
+    "main.e6c13ad2.css.map": "/furniture-client/static/css/main.e6c13ad2.css.map",
+    "main.24543803.js.map": "/furniture-client/static/js/main.24543803.js.map",
+    "787.4ea5a4ce.chunk.js.map": "/furniture-client/static/js/787.4ea5a4ce.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.24543803.js"
+  ]
+}
