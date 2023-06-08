@@ -19,7 +19,7 @@ const Mainpage = ()=>{
   return (
     // <a href='/'dmin/>
     <div className="App">
-      <a href='/'boutNav/>
+      <AboutNav/>
     {/* <FurnitureDisplay/> */}
     <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0" style={{zIndex:99}}>
         <a href='/' className="navbar-brand d-flex align-items-center px-4 px-lg-5">
@@ -30,12 +30,12 @@ const Mainpage = ()=>{
         </button>
         <div className="collapse navbar-collapse" id="navbarCollapse">
             <div className="navbar-nav ms-auto p-4 p-lg-0">
-                <a href='/'  onClick={()=>setSite(<HomePage/>)} className="nav-item nav-link" style={{ cursor: 'pointer' }}>Home</a>
-                <a href='/'  onClick={()=>setSite(<ShopPage/>)} className="nav-item nav-link"style={{ cursor: 'pointer' }}>Shop</a>
-                <a href='/'  onClick={()=>setSite(<Interior/>)} className="nav-item nav-link" style={{ cursor: 'pointer' }}>Interior</a>
-                <a href='/'  onClick={()=>setSite(<Cart/>)} className="nav-item nav-link" style={{ cursor: 'pointer' }}>Cart</a>
+                <a  onClick={()=>setSite(<HomePage/>)} className="nav-item nav-link" style={{ cursor: 'pointer' }}>Home</a>
+                <a  onClick={()=>setSite(<ShopPage/>)} className="nav-item nav-link"style={{ cursor: 'pointer' }}>Shop</a>
+                <a  onClick={()=>setSite(<Interior/>)} className="nav-item nav-link" style={{ cursor: 'pointer' }}>Interior</a>
+                <a  onClick={()=>setSite(<Cart/>)} className="nav-item nav-link" style={{ cursor: 'pointer' }}>Cart</a>
             </div>
-            <a href='/' className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get A Quote<i className="fa fa-arrow-right ms-3"></i></a>
+            <a className="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Get A Quote<i className="fa fa-arrow-right ms-3"></i></a>
         </div>
     </nav>
     {/* <a href='/'dmin/> */} 

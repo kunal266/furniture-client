@@ -151,44 +151,44 @@ const ShopPage = () => {
     <div className=" w-100" >
       <div className="row">
         <div className="col-md-2 px-5 " style={{backgroundColor:'#f2f2f2'}}>
-          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(sofaProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Sofa</a>
+          <a  className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(sofaProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Sofa</a>
           {sofaList.map((element,index)=>{
             return (
-          <a href='/' className='row px-4 ' onClick={()=>setCurrentList(filters(sofaProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+          <a  className='row px-4 ' onClick={()=>setCurrentList(filters(sofaProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
 
             )
           })}
-          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(bedroomProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Beds</a>
+          <a  className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(bedroomProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Beds</a>
           {bedlist.map((element,index)=>{
             return (
-          <a href='/' className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+          <a  className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
 
             )
           })}
-          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(diningTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Dining Tables</a>
+          <a  className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(diningTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Dining Tables</a>
           {diningtablelist.map((element,index)=>{
             return (
-          <a href='/' className='row px-4 ' onClick={()=>setCurrentList(filters(diningTableProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+          <a  className='row px-4 ' onClick={()=>setCurrentList(filters(diningTableProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
 
             )
           })}
-          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(centerTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Center Table</a>
+          <a  className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(centerTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Center Table</a>
           {centertablelist.map((element,index)=>{
             return (
-          <a href='/' className='row px-4 ' onClick={()=>setCurrentList(filters(centerTableProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+          <a  className='row px-4 ' onClick={()=>setCurrentList(filters(centerTableProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
 
             )
           })}
-          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(cupboardProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Cupboards</a>
+          <a  className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(cupboardProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Cupboards</a>
           {cupboardlist.map((element,index)=>{
             return (
-          <a href='/' className='row px-4 ' onClick={()=>setCurrentList(filters(cupboardProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+          <a  className='row px-4 ' onClick={()=>setCurrentList(filters(cupboardProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
 
             )
           })}
-          <a href='/' className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(couchesProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Couches</a>
-          <a href='/' className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(sideTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Side Tables</a>
-          <a href='/' className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(dressingTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Dressing Tables</a>
+          <a  className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(couchesProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Couches</a>
+          <a  className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(sideTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Side Tables</a>
+          <a  className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(dressingTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Dressing Tables</a>
         </div>
         <div className="col-lg-10">
           <div className="row row-cols-1 row-cols-md-5 pt-2" >
