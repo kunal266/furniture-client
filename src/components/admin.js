@@ -108,8 +108,8 @@ const HomePage = () => {
   // const [category, setCategory] = useState('');
   const [image, setImage] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
-  // const [products, setProducts] = useState([]);
-  // const [url, setUrl] = useState('');
+  const [products, setProducts] = useState([]);
+  const [url, setUrl] = useState('');
   const [selectedSubCategory,setSelectedSubCategory]=useState('');
   const [optionChange,setoptionChange] = useState('');
   const [prodId,setProdId]=useState(0);
@@ -325,7 +325,8 @@ const HomePage = () => {
             setPrice('');
             setCustomization('');
             // setCategory('');
-            setUrl('');}
+            // setUrl('');
+          }
           else if (selectedCategory==='Cupboard'){
             await addDoc(collection(db, 'Cupboard'), newProduct);
             setProducts((prevProducts) => [...prevProducts, newProduct]);
@@ -341,7 +342,8 @@ const HomePage = () => {
               setPrice('');
               setCustomization('');
               // setCategory('');
-              setUrl('');}
+              // setUrl('');
+            }
             else if (selectedCategory==='Dining Table'){
               await addDoc(collection(db, 'Dining Table'), newProduct);
               setProducts((prevProducts) => [...prevProducts, newProduct]);

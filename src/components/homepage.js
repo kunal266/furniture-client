@@ -75,7 +75,7 @@ const HomePage = () => {
                     <div className="position-relative h-100 wow fadeIn" data-wow-delay="0.1s">
                         <img className="position-absolute img-fluid w-100 h-100" src="img/about.jpg" 
                         // style="object-fit: cover;" 
-                        alt=""/>
+                        alt="asd"/>
                         <div className="position-absolute top-0 end-0 mt-n4 me-n4 py-4 px-5" 
                         // style="background: rgba(0, 0, 0, .08);"
                         >
@@ -85,7 +85,7 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="col-lg-6">
-                    <h6 className="text-primary text-uppercase">// About Us //</h6>
+                    <h6 className="text-primary text-uppercase">{'// About Us //'}</h6>
                     <h1 className="mb-4"><span className="text-primary">CarServ</span> Is The Best Place For Your Auto Care</h1>
                     <p className="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
                     <div className="row g-4 mb-3 pb-3">
@@ -165,7 +165,7 @@ const HomePage = () => {
     <div className="container-xxl service py-5">
         <div className="container">
             <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 className="text-primary text-uppercase">// Our Services //</h6>
+                <h6 className="text-primary text-uppercase">{'// Our Services //'}</h6>
                 <h1 className="mb-5">Explore Our Services</h1>
             </div>
             <div className="row g-4 wow fadeInUp" data-wow-delay="0.3s">
@@ -199,7 +199,7 @@ const HomePage = () => {
                                     <div className="position-relative h-100">
                                         <img className="position-absolute img-fluid w-100 h-100" src="img/service-1.jpg"
                                             // style="object-fit: cover;" 
-                                            alt=""/>
+                                            alt="asd"/>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
@@ -220,7 +220,7 @@ const HomePage = () => {
                                     <div className="position-relative h-100">
                                         <img className="position-absolute img-fluid w-100 h-100" src="img/service-2.jpg"
                                             // style="object-fit: cover;" 
-                                            alt=""
+                                            alt="asd"
                                            />
                                     </div>
                                 </div>
@@ -242,7 +242,7 @@ const HomePage = () => {
                                     <div className="position-relative h-100">
                                         <img className="position-absolute img-fluid w-100 h-100" src="img/service-3.jpg"
                                             // style="object-fit: cover;"
-                                             alt=""/>
+                                             alt="asd"/>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
@@ -263,7 +263,7 @@ const HomePage = () => {
                                     <div className="position-relative h-100">
                                          <img className="position-absolute img-fludid w-100 h-100" src="img/service-4.jpg" 
                                             // style="object-fit: cover;"
-                                             alt=""/>
+                                             alt="asd"/>
                                     </div>
                                 </div>
                                 <div className="col-md-6">
@@ -339,14 +339,14 @@ const HomePage = () => {
     <div className="container-xxl py-5">
         <div className="container">
             <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
-                <h6 className="text-primary text-uppercase">// Our Technicians //</h6>
+                <h6 className="text-primary text-uppercase">{'// Our Technicians //'}</h6>
                 <h1 className="mb-5">Our Expert Technicians</h1>
             </div>
             <div className="row g-4">
                 <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div className="team-item">
                         <div className="position-relative overflow-hidden">
-                            <img className="img-fluid" src="img/team-1.jpg" alt=""/>
+                            <img className="img-fluid" src="img/team-1.jpg" alt="asd"/>
                             <div className="team-overlay position-absolute start-0 top-0 w-100 h-100">
                                 <a className="btn btn-square mx-1" href="/"><i className="fab fa-facebook-f"></i></a>
                                 <a className="btn btn-square mx-1" href="/"><i className="fab fa-twitter"></i></a>
@@ -362,7 +362,7 @@ const HomePage = () => {
                 <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div className="team-item">
                         <div className="position-relative overflow-hidden">
-                            <img className="img-fluid" src="img/team-2.jpg" alt=""/>
+                            <img className="img-fluid" src="img/team-2.jpg" alt="asdsdsc"/>
                             <div className="team-overlay position-absolute start-0 top-0 w-100 h-100">
                                 <a className="btn btn-square mx-1" href="/"><i className="fab fa-facebook-f"></i></a>
                                 <a className="btn btn-square mx-1" href="/"><i className="fab fa-twitter"></i></a>
@@ -378,7 +378,7 @@ const HomePage = () => {
                 <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div className="team-item">
                         <div className="position-relative overflow-hidden">
-                            <img className="img-fluid" src="img/team-3.jpg" alt=""/>
+                            <img className="img-fluid" src="img/team-3.jpg" alt="asdsdcx"/>
                             <div className="team-overlay position-absolute start-0 top-0 w-100 h-100">
                                 <a className="btn btn-square mx-1" href="/"><i className="fab fa-facebook-f"></i></a>
                                 <a className="btn btn-square mx-1" href="/"><i className="fab fa-twitter"></i></a>
@@ -394,7 +394,7 @@ const HomePage = () => {
                 <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
                     <div className="team-item">
                         <div className="position-relative overflow-hidden">
-                            <img className="img-fluid" src="img/team-4.jpg" alt=""/>
+                            <img className="img-fluid" src="img/team-4.jpg" alt="asd"/>
                             <div className="team-overlay position-absolute start-0 top-0 w-100 h-100">
                                 <a className="btn btn-square mx-1" href="/"><i className="fab fa-facebook-f"></i></a>
                                 <a className="btn btn-square mx-1" href="/"><i className="fab fa-twitter"></i></a>
@@ -413,12 +413,12 @@ const HomePage = () => {
     <div className="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div className="container">
             <div className="text-center">
-                <h6 className="text-primary text-uppercase">// Testimonial //</h6>
+                <h6 className="text-primary text-uppercase">{'// Testimonial //'}</h6>
                 <h1 className="mb-5">Our Clients Say!</h1>
             </div>
             <div className="owl-carousel testimonial-carousel position-relative">
                 <div className="testimonial-item text-center">
-                    <img className="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-1.jpg" 
+                    <img alt="te" className="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-1.jpg" 
                     // style="width: 80px; height: 80px;"
                     />
                     <h5 className="mb-0">Client Name</h5>
@@ -428,7 +428,7 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="testimonial-item text-center">
-                    <img className="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-2.jpg" 
+                    <img alt="te" className="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-2.jpg" 
                     // style="width: 80px; height: 80px;"
                     />
                     <h5 className="mb-0">Client Name</h5>
@@ -438,7 +438,7 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="testimonial-item text-center">
-                    <img className="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-3.jpg" 
+                    <img alt="te" className="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-3.jpg" 
                     // style="width: 80px; height: 80px;"
                     />
                     <h5 className="mb-0">Client Name</h5>
@@ -448,7 +448,7 @@ const HomePage = () => {
                     </div>
                 </div>
                 <div className="testimonial-item text-center">
-                    <img className="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-4.jpg"
+                    <img alt="te" className="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-4.jpg"
                     
                     // style="width: 80px; height: 80px;"
                     />
