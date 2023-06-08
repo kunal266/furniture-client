@@ -2,7 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc,getDocs } from 'firebase/firestore';
+import { getFirestore, collection
+  // , onSnapshot
+  , addDoc, deleteDoc, doc,getDocs } from 'firebase/firestore';
 import {getStorage,ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
 
 // Create a Firebase configuration object
@@ -103,11 +105,11 @@ const HomePage = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [customization, setCustomization] = useState('');
-  const [category, setCategory] = useState('');
+  // const [category, setCategory] = useState('');
   const [image, setImage] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [products, setProducts] = useState([]);
-  const [url, setUrl] = useState('');
+  // const [products, setProducts] = useState([]);
+  // const [url, setUrl] = useState('');
   const [selectedSubCategory,setSelectedSubCategory]=useState('');
   const [optionChange,setoptionChange] = useState('');
   const [prodId,setProdId]=useState(0);
@@ -313,7 +315,7 @@ const HomePage = () => {
           setName('');
           setPrice('');
           setCustomization('');
-          setCategory('');
+          // setCategory('');
           // setUrl('');
         }
           else if (selectedCategory==='Beds'){
@@ -322,7 +324,7 @@ const HomePage = () => {
             setName('');
             setPrice('');
             setCustomization('');
-            setCategory('');
+            // setCategory('');
             setUrl('');}
           else if (selectedCategory==='Cupboard'){
             await addDoc(collection(db, 'Cupboard'), newProduct);
@@ -330,7 +332,7 @@ const HomePage = () => {
             setName('');
             setPrice('');
             setCustomization('');
-            setCategory('');
+            // setCategory('');
             setUrl('');}   
             else if (selectedCategory==='Center Table'){
               await addDoc(collection(db, 'Center Table'), newProduct);
@@ -338,7 +340,7 @@ const HomePage = () => {
               setName('');
               setPrice('');
               setCustomization('');
-              setCategory('');
+              // setCategory('');
               setUrl('');}
             else if (selectedCategory==='Dining Table'){
               await addDoc(collection(db, 'Dining Table'), newProduct);
@@ -346,7 +348,7 @@ const HomePage = () => {
               setName('');
               setPrice('');
               setCustomization('');
-              setCategory('');
+              // setCategory('');
               setUrl('');}
             else if (selectedCategory==='Dressing Table'){
               await addDoc(collection(db, 'Dressing Table'), newProduct);
@@ -354,7 +356,7 @@ const HomePage = () => {
               setName('');
               setPrice('');
               setCustomization('');
-              setCategory('');
+              // setCategory('');
               setUrl('');}
             else if (selectedCategory==='Couches'){
               await addDoc(collection(db, 'Couches'), newProduct);
@@ -362,7 +364,7 @@ const HomePage = () => {
               setName('');
               setPrice('');
               setCustomization('');
-              setCategory('');
+              // setCategory('');
               setUrl('');}
               else if (selectedCategory==='Side Table'){
                 await addDoc(collection(db, 'Side Table'), newProduct);
@@ -370,7 +372,7 @@ const HomePage = () => {
                 setName('');
                 setPrice('');
                 setCustomization('');
-                setCategory('');
+                // setCategory('');
                 setUrl('');}
         }
       );})

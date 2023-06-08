@@ -1,12 +1,19 @@
 import React,{useEffect,useState,useContext} from 'react';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc,getDocs } from 'firebase/firestore';
-import {getStorage,ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
-import {Link} from 'react-router-dom';
-import Modal from './modal';
+import { getAuth
+  // , signInWithEmailAndPassword 
+} from 'firebase/auth';
+import { getFirestore, collection
+  // , onSnapshot, addDoc, deleteDoc, doc
+  ,
+  getDocs } from 'firebase/firestore';
+import {getStorage
+  // ,ref, getDownloadURL, uploadBytesResumable
+} from 'firebase/storage';
+// import {Link} from 'react-router-dom';
+// import Modal from './modal';
 import { CartContext } from '../App';
-import Cart from './Cart';
+// import Cart from './Cart';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -34,11 +41,11 @@ const cardStyle = {
   cursor: 'pointer'
 };
 const ShopPage = () => {
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [traits, setTraits] = useState('');
-  const [category, setCategory] = useState('');
-  const [image, setImage] = useState(null);
+  // const [name, setName] = useState('');
+  // const [price, setPrice] = useState('');
+  // const [traits, setTraits] = useState('');
+  // const [category, setCategory] = useState('');
+  // const [image, setImage] = useState(null);
   const [bedroomProducts, setBedroomProducts] = useState([]);
   const [sofaProducts, setSofaProducts] = useState([]);
   const [diningTableProducts, setDiningTableProducts] = useState([]);
@@ -47,11 +54,11 @@ const ShopPage = () => {
   const [couchesProducts, setcouchesProducts] = useState([]);
   const [dressingTableProducts, setdressingTableProducts] = useState([]);
   const [sideTableProducts, setsideTableProducts] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  // const [selectedCategory, setSelectedCategory] = useState('');
   const [currentList,setCurrentList] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [cartItems, setCartItems] = useState(0);
-  const [cupboardProduct,setcupboardProduct] = useState([]);
+  // const [selectedProduct, setSelectedProduct] = useState(null);
+  // const [cartItems, setCartItems] = useState(0);
+  // const [cupboardProduct,setcupboardProduct] = useState([]);
   const { cart, addToCart  } = useContext(CartContext);
 
 
@@ -147,44 +154,44 @@ const ShopPage = () => {
     <div className=" w-100" >
       <div className="row">
         <div className="col-md-2 px-5 " style={{backgroundColor:'#f2f2f2'}}>
-          <a className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(sofaProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Sofa</a>
+          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(sofaProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Sofa</a>
           {sofaList.map((element,index)=>{
             return (
-          <a className='row px-4 ' onClick={()=>setCurrentList(filters(sofaProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+          <a href='/' className='row px-4 ' onClick={()=>setCurrentList(filters(sofaProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
 
             )
           })}
-          <a className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(bedroomProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Beds</a>
+          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(bedroomProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Beds</a>
           {bedlist.map((element,index)=>{
             return (
-          <a className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+          <a href='/' className='row px-4 ' onClick={()=>setCurrentList(filters(bedroomProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
 
             )
           })}
-          <a className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(diningTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Dining Tables</a>
+          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(diningTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Dining Tables</a>
           {diningtablelist.map((element,index)=>{
             return (
-          <a className='row px-4 ' onClick={()=>setCurrentList(filters(diningTableProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+          <a href='/' className='row px-4 ' onClick={()=>setCurrentList(filters(diningTableProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
 
             )
           })}
-          <a className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(centerTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Center Table</a>
+          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(centerTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Center Table</a>
           {centertablelist.map((element,index)=>{
             return (
-          <a className='row px-4 ' onClick={()=>setCurrentList(filters(centerTableProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+          <a href='/' className='row px-4 ' onClick={()=>setCurrentList(filters(centerTableProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
 
             )
           })}
-          <a className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(cupboardProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Cupboards</a>
+          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(cupboardProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Cupboards</a>
           {cupboardlist.map((element,index)=>{
             return (
-          <a className='row px-4 ' onClick={()=>setCurrentList(filters(cupboardProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
+          <a href='/' className='row px-4 ' onClick={()=>setCurrentList(filters(cupboardProducts,element))}  key = {index} style={{ color: 'black',cursor: 'pointer' }}>{" "}{element} </a>
 
             )
           })}
-          <a className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(couchesProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Couches</a>
-          <a className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(sideTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Side Tables</a>
-          <a className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(dressingTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Dressing Tables</a>
+          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(couchesProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Couches</a>
+          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(sideTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Side Tables</a>
+          <a href='/' className='row mt-2 px-2 fw-bold' onClick={()=>setCurrentList(dressingTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Dressing Tables</a>
         </div>
         <div className="col-lg-10">
           <div className="row row-cols-1 row-cols-md-3 row-cols-lg-5 pt-2" >
@@ -192,7 +199,7 @@ const ShopPage = () => {
               <div className="col" key={index}>
                 {/* {console.log(product)} */}
                 {/* <Link to={`/${product.selectedCategory}/${product.id}`} className="card-link" style={{ color: 'black' }} target="_blank"  > */}
-                <div className="card " style={cardStyle} onClick={() => setSelectedProduct(product)}>
+                <div className="card " style={cardStyle}>
                     <img
                       src={product.urll}
                       alt={product.name}

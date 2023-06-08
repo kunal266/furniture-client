@@ -19,7 +19,7 @@ const Carousel = ({images }) => {
             key={index}
             className={`carousel-item ${index === activeIndex ? 'active' : ''}`}
           >
-            <img className="w-100" src={image[0]} alt="Image"/>
+            <img className="w-100" src={image[0]} alt="bruh"/>
                     <div className="carousel-caption d-flex align-items-center">
                         <div className="container">
                             <div className="row align-items-center justify-content-center justify-content-lg-start">

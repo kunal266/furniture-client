@@ -88,6 +88,7 @@ const Cart = () => {
     products.map((value)=>{
 
       temp = temp + (value[0]*1000)
+      return 0
     })
     console.log(temp)
     return temp

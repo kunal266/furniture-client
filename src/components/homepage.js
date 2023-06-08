@@ -38,7 +38,7 @@ const HomePage = () => {
                         <div className="ps-4">
                             <h5 className="mb-3">Quality Servicing</h5>
                             <p>Diam dolor diam ipsum sit amet diam et eos erat ipsum</p>
-                            <a className="text-secondary border-bottom" href="">Read More</a>
+                            <a className="text-secondary border-bottom" href="/">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ const HomePage = () => {
                         <div className="ps-4">
                             <h5 className="mb-3">Expert Workers</h5>
                             <p>Diam dolor diam ipsum sit amet diam et eos erat ipsum</p>
-                            <a className="text-secondary border-bottom" href="">Read More</a>
+                            <a className="text-secondary border-bottom" href="/">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ const HomePage = () => {
                         <div className="ps-4">
                             <h5 className="mb-3">Modern Equipment</h5>
                             <p>Diam dolor diam ipsum sit amet diam et eos erat ipsum</p>
-                            <a className="text-secondary border-bottom" href="">Read More</a>
+                            <a className="text-secondary border-bottom" href="/">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -129,7 +129,7 @@ const HomePage = () => {
                             </div>
                         </div>
                     </div>
-                    <a href="" className="btn btn-primary py-3 px-5">Read More<i className="fa fa-arrow-right ms-3"></i></a>
+                    <a href="/" className="btn btn-primary py-3 px-5">Read More<i className="fa fa-arrow-right ms-3"></i></a>
                 </div>
             </div>
         </div>
@@ -208,7 +208,7 @@ const HomePage = () => {
                                     <p><i className="fa fa-check text-success me-3"></i>Quality Servicing</p>
                                     <p><i className="fa fa-check text-success me-3"></i>Expert Workers</p>
                                     <p><i className="fa fa-check text-success me-3"></i>Modern Equipment</p>
-                                    <a href="" className="btn btn-primary py-3 px-5 mt-3">Read More<i className="fa fa-arrow-right ms-3"></i></a>
+                                    <a href="/" className="btn btn-primary py-3 px-5 mt-3">Read More<i className="fa fa-arrow-right ms-3"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -230,7 +230,7 @@ const HomePage = () => {
                                     <p><i className="fa fa-check text-success me-3"></i>Quality Servicing</p>
                                     <p><i className="fa fa-check text-success me-3"></i>Expert Workers</p>
                                     <p><i className="fa fa-check text-success me-3"></i>Modern Equipment</p>
-                                    <a href="" className="btn btn-primary py-3 px-5 mt-3">Read More<i className="fa fa-arrow-right ms-3"></i></a>
+                                    <a href="/" className="btn btn-primary py-3 px-5 mt-3">Read More<i className="fa fa-arrow-right ms-3"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -251,7 +251,7 @@ const HomePage = () => {
                                     <p><i className="fa fa-check text-success me-3"></i>Quality Servicing</p>
                                     <p><i className="fa fa-check text-success me-3"></i>Expert Workers</p>
                                     <p><i className="fa fa-check text-success me-3"></i>Modern Equipment</p>
-                                    <a href="" className="btn btn-primary py-3 px-5 mt-3">Read More<i className="fa fa-arrow-right ms-3"></i></a>
+                                    <a href="/" className="btn btn-primary py-3 px-5 mt-3">Read More<i className="fa fa-arrow-right ms-3"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -272,7 +272,7 @@ const HomePage = () => {
                                     <p><i className="fa fa-check text-success me-3"></i>Quality Servicing</p>
                                     <p><i className="fa fa-check text-success me-3"></i>Expert Workers</p>
                                     <p><i className="fa fa-check text-success me-3"></i>Modern Equipment</p>
-                                    <a href="" className="btn btn-primary py-3 px-5 mt-3">Read More<i className="fa fa-arrow-right ms-3"></i></a>
+                                    <a href="/" className="btn btn-primary py-3 px-5 mt-3">Read More<i className="fa fa-arrow-right ms-3"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -348,9 +348,9 @@ const HomePage = () => {
                         <div className="position-relative overflow-hidden">
                             <img className="img-fluid" src="img/team-1.jpg" alt=""/>
                             <div className="team-overlay position-absolute start-0 top-0 w-100 h-100">
-                                <a className="btn btn-square mx-1" href=""><i className="fab fa-facebook-f"></i></a>
-                                <a className="btn btn-square mx-1" href=""><i className="fab fa-twitter"></i></a>
-                                <a className="btn btn-square mx-1" href=""><i className="fab fa-instagram"></i></a>
+                                <a className="btn btn-square mx-1" href="/"><i className="fab fa-facebook-f"></i></a>
+                                <a className="btn btn-square mx-1" href="/"><i className="fab fa-twitter"></i></a>
+                                <a className="btn btn-square mx-1" href="/"><i className="fab fa-instagram"></i></a>
                             </div>
                         </div>
                         <div className="bg-light text-center p-4">
@@ -364,9 +364,9 @@ const HomePage = () => {
                         <div className="position-relative overflow-hidden">
                             <img className="img-fluid" src="img/team-2.jpg" alt=""/>
                             <div className="team-overlay position-absolute start-0 top-0 w-100 h-100">
-                                <a className="btn btn-square mx-1" href=""><i className="fab fa-facebook-f"></i></a>
-                                <a className="btn btn-square mx-1" href=""><i className="fab fa-twitter"></i></a>
-                                <a className="btn btn-square mx-1" href=""><i className="fab fa-instagram"></i></a>
+                                <a className="btn btn-square mx-1" href="/"><i className="fab fa-facebook-f"></i></a>
+                                <a className="btn btn-square mx-1" href="/"><i className="fab fa-twitter"></i></a>
+                                <a className="btn btn-square mx-1" href="/"><i className="fab fa-instagram"></i></a>
                             </div>
                         </div>
                         <div className="bg-light text-center p-4">
@@ -380,9 +380,9 @@ const HomePage = () => {
                         <div className="position-relative overflow-hidden">
                             <img className="img-fluid" src="img/team-3.jpg" alt=""/>
                             <div className="team-overlay position-absolute start-0 top-0 w-100 h-100">
-                                <a className="btn btn-square mx-1" href=""><i className="fab fa-facebook-f"></i></a>
-                                <a className="btn btn-square mx-1" href=""><i className="fab fa-twitter"></i></a>
-                                <a className="btn btn-square mx-1" href=""><i className="fab fa-instagram"></i></a>
+                                <a className="btn btn-square mx-1" href="/"><i className="fab fa-facebook-f"></i></a>
+                                <a className="btn btn-square mx-1" href="/"><i className="fab fa-twitter"></i></a>
+                                <a className="btn btn-square mx-1" href="/"><i className="fab fa-instagram"></i></a>
                             </div>
                         </div>
                         <div className="bg-light text-center p-4">
@@ -396,9 +396,9 @@ const HomePage = () => {
                         <div className="position-relative overflow-hidden">
                             <img className="img-fluid" src="img/team-4.jpg" alt=""/>
                             <div className="team-overlay position-absolute start-0 top-0 w-100 h-100">
-                                <a className="btn btn-square mx-1" href=""><i className="fab fa-facebook-f"></i></a>
-                                <a className="btn btn-square mx-1" href=""><i className="fab fa-twitter"></i></a>
-                                <a className="btn btn-square mx-1" href=""><i className="fab fa-instagram"></i></a>
+                                <a className="btn btn-square mx-1" href="/"><i className="fab fa-facebook-f"></i></a>
+                                <a className="btn btn-square mx-1" href="/"><i className="fab fa-twitter"></i></a>
+                                <a className="btn btn-square mx-1" href="/"><i className="fab fa-instagram"></i></a>
                             </div>
                         </div>
                         <div className="bg-light text-center p-4">
@@ -471,10 +471,10 @@ const HomePage = () => {
                     <p className="mb-2"><i className="fa fa-phone-alt me-3"></i>+012 345 67890</p>
                     <p className="mb-2"><i className="fa fa-envelope me-3"></i>info@example.com</p>
                     <div className="d-flex pt-2">
-                        <a className="btn btn-outline-light btn-social" href=""><i className="fab fa-twitter"></i></a>
-                        <a className="btn btn-outline-light btn-social" href=""><i className="fab fa-facebook-f"></i></a>
-                        <a className="btn btn-outline-light btn-social" href=""><i className="fab fa-youtube"></i></a>
-                        <a className="btn btn-outline-light btn-social" href=""><i className="fab fa-linkedin-in"></i></a>
+                        <a className="btn btn-outline-light btn-social" href="/"><i className="fab fa-twitter"></i></a>
+                        <a className="btn btn-outline-light btn-social" href="/"><i className="fab fa-facebook-f"></i></a>
+                        <a className="btn btn-outline-light btn-social" href="/"><i className="fab fa-youtube"></i></a>
+                        <a className="btn btn-outline-light btn-social" href="/"><i className="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div className="col-lg-3 col-md-6">
@@ -486,11 +486,11 @@ const HomePage = () => {
                 </div>
                 <div className="col-lg-3 col-md-6">
                     <h4 className="text-light mb-4">Services</h4>
-                    <a className="btn btn-link" href="">Diagnostic Test</a>
-                    <a className="btn btn-link" href="">Engine Servicing</a>
-                    <a className="btn btn-link" href="">Tires Replacement</a>
-                    <a className="btn btn-link" href="">Oil Changing</a>
-                    <a className="btn btn-link" href="">Vacuam Cleaning</a>
+                    <a className="btn btn-link" href="/">Diagnostic Test</a>
+                    <a className="btn btn-link" href="/">Engine Servicing</a>
+                    <a className="btn btn-link" href="/">Tires Replacement</a>
+                    <a className="btn btn-link" href="/">Oil Changing</a>
+                    <a className="btn btn-link" href="/">Vacuam Cleaning</a>
                 </div>
                 <div className="col-lg-3 col-md-6">
                     <h4 className="text-light mb-4">Newsletter</h4>
@@ -508,24 +508,24 @@ const HomePage = () => {
             <div className="copyright">
                 <div className="row">
                     <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a className="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+                        &copy; <a className="border-bottom" href="/#">Your Site Name</a>, All Right Reserved.
 
                         
-                        Designed By <a className="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                        Designed By <a className="border-bottom" href="/https://htmlcodex.com">HTML Codex</a>
                     </div>
                     <div className="col-md-6 text-center text-md-end">
                         <div className="footer-menu">
-                            <a href="">Home</a>
-                            <a href="">Cookies</a>
-                            <a href="">Help</a>
-                            <a href="">FQAs</a>
+                            <a href="/">Home</a>
+                            <a href="/">Cookies</a>
+                            <a href="/">Help</a>
+                            <a href="/">FQAs</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <a href="#" className="btn btn-lg btn-primary btn-lg-square back-to-top"><i className="bi bi-arrow-up"></i></a>
+    <a href="/#" className="btn btn-lg btn-primary btn-lg-square back-to-top"><i className="bi bi-arrow-up"></i></a>
         </div>
     )
 }

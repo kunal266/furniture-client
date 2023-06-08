@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const AboutNav = () => {
   return (
@@ -20,10 +20,10 @@ const AboutNav = () => {
                     <small>+012 345 6789</small>
                 </div>
                 <div className="h-100 d-inline-flex align-items-center">
-                    <a className="btn btn-sm-square bg-white text-primary me-1" href=""><i className="fab fa-facebook-f"></i></a>
-                    <a className="btn btn-sm-square bg-white text-primary me-1" href=""><i className="fab fa-twitter"></i></a>
-                    <a className="btn btn-sm-square bg-white text-primary me-1" href=""><i className="fab fa-linkedin-in"></i></a>
-                    <a className="btn btn-sm-square bg-white text-primary me-0" href=""><i className="fab fa-instagram"></i></a>
+                    <a href='/' className="btn btn-sm-square bg-white text-primary me-1"><i className="fab fa-facebook-f"></i></a>
+                    <a href='/' className="btn btn-sm-square bg-white text-primary me-1"><i className="fab fa-twitter"></i></a>
+                    <a href='/' className="btn btn-sm-square bg-white text-primary me-1"><i className="fab fa-linkedin-in"></i></a>
+                    <a href='/' className="btn btn-sm-square bg-white text-primary me-0"><i className="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
