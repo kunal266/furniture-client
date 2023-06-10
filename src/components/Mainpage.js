@@ -9,6 +9,7 @@ import HomePage from './homepage';
 import AboutNav from '../AboutNav';
 import Interior from './Interior';
 import Cart from './Cart';
+import Icon from './img/icon.png'
 // import {Link} from 'react-router-dom';
 
 const Mainpage = ()=>{
@@ -23,7 +24,11 @@ const Mainpage = ()=>{
     {/* <FurnitureDisplay/> */}
     <nav className="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0" style={{zIndex:99}}>
         <a href='/' className="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 className="m-0 text-primary"><i className="fa fa-car me-3"></i>Panache Interior</h2>
+
+            <h2 className="m-0 text-primary"> 
+          
+        <img src={Icon} alt="Icon" style={{ width: '24px', height: '24px' }} />
+      Panache Interior</h2>
         </a>
         <button type="button" className="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span className="navbar-toggler-icon"></span>
