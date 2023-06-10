@@ -69,7 +69,7 @@ const ShopPage = () => {
     try {
       const querySnapshot = await getDocs(collection(db,element));
       const productsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-      if (element==='sofa'){
+      if (element==='Sofa'){
 
         setCurrentList(productsData)
       }
@@ -86,15 +86,15 @@ const ShopPage = () => {
   
       const fetchfirebase = async ()=>{
         
-        setSofaProducts(await fetchProducts('sofa'))
+        setSofaProducts(await fetchProducts('Sofa'))
         // console.log(await fetchProducts('cupboard'))
-        setcupboardProducts(await fetchProducts('cupboard'))
-        setBedroomProducts(await fetchProducts('bed'))
-        setDiningTableProducts(await fetchProducts('diningTableChairs'))
-        setcenterTableProducts(await fetchProducts('centerTable'))
-        setcouchesProducts(await fetchProducts('couches'))
-        setdressingTableProducts(await fetchProducts('dressingtable'))
-        setsideTableProducts(await fetchProducts('sidetable'))
+        setcupboardProducts(await fetchProducts('Cupboard'))
+        setBedroomProducts(await fetchProducts('Beds'))
+        setDiningTableProducts(await fetchProducts('Dining Table'))
+        setcenterTableProducts(await fetchProducts('Center Table'))
+        setcouchesProducts(await fetchProducts('Couches'))
+        setdressingTableProducts(await fetchProducts('Dressing Table'))
+        setsideTableProducts(await fetchProducts('Side Table'))
       }
   
   useEffect(() => {
@@ -141,12 +141,12 @@ const ShopPage = () => {
     // console.log(product,action)
     addToCart(product,action)
   };
-  const categoryList = ['sofa','beds','cupboard','centerTable','diningTableChairs','couches','sidetable','dressingtable']
-  const sofaList = ['sofacumbed','sofawithlouger','sofa311','sofa32']
-  const bedlist = ['kingsize','queensize']
-  const cupboardlist = ['backpaintedglass','digitalglass','laminatefinish','walltowall']
-  const centertablelist = ['marbletop','woodentop','onextable','11','glasstop']
-  const diningtablelist = ['marbletopwoodenbase','marbletopsteelbase','glasstopsteelbase','11','woodendining']
+  const categoryList = ['Sofa','Beds','Cupboard','Center Table','Dining Table','Couches','Side Table','Dressing Table']
+  const sofaList = ['Sofa cumbed','Sofa with louger','Sofa 3+1+1','Sofa 3+2']
+  const bedlist = ['King Size','Queen Size']
+  const cupboardlist = ['Backpainted Glass','Digital Glass','Laminate Finish','Wall to Wall']
+  const centertablelist = ['Marble Top','Wooden Top','Onex For table Top','1+1','Glass Top']
+  const diningtablelist = ['Marble Top (Wooden Base)','Marble Top (Steel Base)','Glass Top (Steel Base)','Wooden Dining Table']
   return (
     <div className=" w-100" >
       <div className="row">

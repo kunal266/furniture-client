@@ -120,28 +120,41 @@ const HomePage = () => {
   const [diningTableProducts, setDiningTableProducts] = useState([]);
   const [centerTableProducts, setcenterTableProducts] = useState([]);
   const [cupboardProducts, setcupboardProducts] = useState([]);
+  const [couchesProducts, setccouchesProducts] = useState([]);
+  const [dressProducts, setdressProducts] = useState([]);
+  const [sideProducts, setsideProducts] = useState([]);
+
 
   const fetchProducts = async () => {
     try {
       // Fetch products from Firestore and listen htmlFor real-time updates
-      const querySnapshot =await getDocs(collection(db,'bed'));
+      const querySnapshot =await getDocs(collection(db,'Beds'));
       // console.log(querySnapshot)
       const productsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       // console.log(productsData)
       setBedProducts(productsData);
-      const sofasnap  = await getDocs(collection(db, 'sofa'));
+      const sofasnap  = await getDocs(collection(db, 'Sofa'));
       const sofaproductsData = sofasnap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
       setSofaProducts(sofaproductsData);
-      const cupboarddinsap  = await getDocs(collection(db, 'cupboard'));
+      const cupboarddinsap  = await getDocs(collection(db, 'Cupboard'));
       const cupboarddinprodu = cupboarddinsap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
       setcupboardProducts(cupboarddinprodu);
-      const centerdinsap  = await getDocs(collection(db, 'centerTable'));
+      const centerdinsap  = await getDocs(collection(db, 'Center Table'));
       const centerdinsapdinprodu = centerdinsap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
       setcenterTableProducts(centerdinsapdinprodu);
 
-      const dinsap  = await getDocs(collection(db, 'diningTableChairs'));
+      const dinsap  = await getDocs(collection(db, 'Dining Table'));
       const dinprodu = dinsap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
       setDiningTableProducts(dinprodu);
+      const couchesdinsap  = await getDocs(collection(db, 'Couches'));
+      const coudinprodu = couchesdinsap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
+      setccouchesProducts(coudinprodu);
+      const sidedinsap  = await getDocs(collection(db, 'Side Table'));
+      const sidedinprodu = sidedinsap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
+      setsideProducts(sidedinprodu);
+      const dressdinsap  = await getDocs(collection(db, 'Dressing Table'));
+      const dressdinprodu = dressdinsap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
+      setdressProducts(dressdinprodu);
       // console.log(bedroomProducts)
     } catch (error) {
       console.log(error);
@@ -156,12 +169,12 @@ const HomePage = () => {
 
 
 
-  const categoryList = ['sofa','beds','cupboard','centerTable','diningTableChairs','couches','sidetable','dressingtable']
-  const sofasubCategoryList = ['sofacumbed','sofawithlouger','sofa311','sofa32']
-  const bedsublist = ['kingsize','queensize']
-  const cupboardlist = ['backpaintedglass','digitalglass','laminatefinish','walltowall']
-  const centertablelist = ['marbletop','woodentop','onextable','11','glasstop']
-  const diningtablelist = ['marbletopwoodenbase','marbletopsteelbase','glasstopsteelbase','11','woodendining']
+  const categoryList = ['Sofa','Beds','Cupboard','Center Table','Dining Table','Couches','Side Table','Dressing Table']
+  const sofasubCategoryList = ['Sofa cumbed','Sofa with louger','Sofa 3+1+1','Sofa 3+2']
+  const bedsublist = ['King Size','Queen Size']
+  const cupboardlist = ['Backpainted Glass','Digital Glass','Laminate Finish','Wall to Wall']
+  const centertablelist = ['Marble Top','Wooden Top','Onex For table Top','1+1','Glass Top']
+  const diningtablelist = ['Marble Top (Wooden Base)','Marble Top (Steel Base)','Glass Top (Steel Base)','Wooden Dining Table']
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
@@ -176,7 +189,47 @@ const HomePage = () => {
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
-    if (event.target.value==="sofa"){
+    if (event.target.value==="Sofa"){
+      setoptionChange(
+        <select
+        id="subcategory"
+        className="form-control"
+        value={selectedSubCategory}
+        onChange={handleSubCategoryChange}
+      >
+        <option value="">Select Sub-Category</option>
+        {sofasubCategoryList.map((product, index)=>{
+          return (<option value={product} key={index}>{product}</option>)
+        })}
+      </select>
+        )}
+    else if (event.target.value==="Beds"){
+      setoptionChange(
+        <select
+        id="subcategory"
+        className="form-control"
+        value={selectedSubCategory}
+        onChange={handleSubCategoryChange}
+      >
+        <option value="">Select Sub-Category</option>
+        {bedsublist.map((product, index)=>{
+          return (<option value={product} key={index}>{product}</option>)
+        })}
+      </select>)}
+    else if (event.target.value==="Cupboard"){
+      setoptionChange(
+        <select
+        id="subcategory"
+        className="form-control"
+        value={selectedSubCategory}
+        onChange={handleSubCategoryChange}
+      >
+        <option value="">Select Sub-Category</option>
+        {cupboardlist.map((product, index)=>{
+          return (<option value={product} key={index}>{product}</option>)
+        })}
+      </select>)}
+      else if (event.target.value==="Center Table"){
         setoptionChange(
           <select
           id="subcategory"
@@ -185,38 +238,11 @@ const HomePage = () => {
           onChange={handleSubCategoryChange}
         >
           <option value="">Select Sub-Category</option>
-          {sofasubCategoryList.map((product, index)=>{
-            return (<option value={product} key={index}>{product}</option>)
-          })}
-        </select>
-          )}
-      else if (event.target.value==="beds"){
-        setoptionChange(
-          <select
-          id="subcategory"
-          className="form-control"
-          value={selectedSubCategory}
-          onChange={handleSubCategoryChange}
-        >
-          <option value="">Select Sub-Category</option>
-          {bedsublist.map((product, index)=>{
+          {centertablelist.map((product, index)=>{
             return (<option value={product} key={index}>{product}</option>)
           })}
         </select>)}
-      else if (event.target.value==="cupboard"){
-        setoptionChange(
-          <select
-          id="subcategory"
-          className="form-control"
-          value={selectedSubCategory}
-          onChange={handleSubCategoryChange}
-        >
-          <option value="">Select Sub-Category</option>
-          {cupboardlist.map((product, index)=>{
-            return (<option value={product} key={index}>{product}</option>)
-          })}
-        </select>)}
-        else if (event.target.value==="centerTable"){
+        else if (event.target.value==="Dining Table"){
           setoptionChange(
             <select
             id="subcategory"
@@ -225,34 +251,21 @@ const HomePage = () => {
             onChange={handleSubCategoryChange}
           >
             <option value="">Select Sub-Category</option>
-            {centertablelist.map((product, index)=>{
+            {diningtablelist.map((product, index)=>{
               return (<option value={product} key={index}>{product}</option>)
             })}
           </select>)}
-          else if (event.target.value==="diningTableChairs"){
-            setoptionChange(
-              <select
-              id="subcategory"
-              className="form-control"
-              value={selectedSubCategory}
-              onChange={handleSubCategoryChange}
-            >
-              <option value="">Select Sub-Category</option>
-              {diningtablelist.map((product, index)=>{
-                return (<option value={product} key={index}>{product}</option>)
-              })}
-            </select>)}
-      else {
-        setoptionChange(
-          <select
-          id="subcategory"
-          className="form-control"
-          value={selectedSubCategory}
-          onChange={handleSubCategoryChange}
-        >
-          <option value="">Select Category</option>
-        </select>)
-      }
+    else {
+      setoptionChange(
+        <select
+        id="subcategory"
+        className="form-control"
+        value={selectedSubCategory}
+        onChange={handleSubCategoryChange}
+      >
+        <option value="">Select Category</option>
+      </select>)
+    }
   };
 
   const handleSubCategoryChange = (event) => {
@@ -379,26 +392,41 @@ const HomePage = () => {
       await deleteDoc(doc(db, category, productId));
       
       // Remove the deleted product from the local state
-      if (category === 'bed') {
+      if (category === 'Beds') {
         setBedProducts((prevProducts) =>
           prevProducts.filter((product) => product.id !== productId)
         );
-      } else if (category === 'sofa') {
+      } else if (category === 'Sofa') {
         setSofaProducts((prevProducts) =>
           prevProducts.filter((product) => product.id !== productId)
         );
-      } else if (category === 'diningTableChairs') {
+      } else if (category === 'Dining Table') {
         setDiningTableProducts((prevProducts) =>
           prevProducts.filter((product) => product.id !== productId)
         );
       }
-      else if (category === 'cupboard') {
+      else if (category === 'Cupboard') {
         setcupboardProducts((prevProducts) =>
           prevProducts.filter((product) => product.id !== productId)
         );
       }
-      else if (category === 'centerTable') {
+      else if (category === 'Center Table') {
         setcenterTableProducts((prevProducts) =>
+          prevProducts.filter((product) => product.id !== productId)
+        );
+      }
+      else if (category === 'Couches') {
+        setccouchesProducts((prevProducts) =>
+          prevProducts.filter((product) => product.id !== productId)
+        );
+      }
+      else if (category === 'Side Table') {
+        setsideProducts((prevProducts) =>
+          prevProducts.filter((product) => product.id !== productId)
+        );
+      }
+      else if (category === 'Dressing Table') {
+        setdressProducts((prevProducts) =>
           prevProducts.filter((product) => product.id !== productId)
         );
       }
@@ -504,7 +532,8 @@ const HomePage = () => {
     </div>
   </div>
 </div>
-      <h2>Bedroom Product List:</h2>
+
+          <h2>Beds Product List:</h2>
       <div className="row row-cols-1 row-cols-md-5 g-4 ml-3  p-3" >
         {bedProducts.map((product, index) => (
           <div className="col" key={index}>
@@ -521,7 +550,7 @@ const HomePage = () => {
                 <p className="card-text">Traits: {product.customization}</p>
                 <button
                   type="button"
-                  onClick={() => handleDeleteProduct(product.id, 'bed')}
+                  onClick={() => handleDeleteProduct(product.id, product.selectedCategory)}
                   className="btn btn-danger"
                 >
                   Delete
@@ -531,6 +560,7 @@ const HomePage = () => {
           </div>
         ))}
       </div>
+      
       <h2>SOFA Product List:</h2>
       <div className="row row-cols-1 row-cols-md-5 g-4 p-3" >
         {sofaProducts.map((product, index) => (
@@ -548,7 +578,7 @@ const HomePage = () => {
                 <p className="card-text">Traits: {product.customization}</p>
                 <button
                   type="button"
-                  onClick={() => handleDeleteProduct(product.id, 'sofa')}
+                  onClick={() => handleDeleteProduct(product.id, product.selectedCategory)}
                   className="btn btn-danger"
                 >
                   Delete
@@ -575,7 +605,7 @@ const HomePage = () => {
                 <p className="card-text">Traits: {product.customization}</p>
                 <button
                   type="button"
-                  onClick={() => handleDeleteProduct(product.id, 'diningTableChairs')}
+                  onClick={() => handleDeleteProduct(product.id, product.selectedCategory)}
                   className="btn btn-danger"
                 >
                   Delete
@@ -602,7 +632,7 @@ const HomePage = () => {
                 <p className="card-text">Traits: {product.customization}</p>
                 <button
                   type="button"
-                  onClick={() => handleDeleteProduct(product.id, 'centerTable')}
+                  onClick={() => handleDeleteProduct(product.id,product.selectedCategory)}
                   className="btn btn-danger"
                 >
                   Delete
@@ -629,7 +659,88 @@ const HomePage = () => {
                 <p className="card-text">Traits: {product.customization}</p>
                 <button
                   type="button"
-                  onClick={() => handleDeleteProduct(product.id, 'cupboard')}
+                  onClick={() => handleDeleteProduct(product.id, product.selectedCategory)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <h2>Couches Product List:</h2>
+      <div className="row row-cols-1 row-cols-md-5 g-4 ml-3  p-3" >
+        {couchesProducts.map((product, index) => (
+          <div className="col" key={index}>
+            <div className="card border-primary border-2" style={{ width: "304px"}} >
+                <img
+                  src={product.urll}
+                  alt={product.name}
+                  className="card-img-top"
+                  style={{ objectFit: "cover", width: "300px", height: "300px" }}
+                />
+              <div className="card-body">
+                <h5 className="card-title">{product.name}</h5>
+                <p className="card-text">Price: {product.price}</p>
+                <p className="card-text">Traits: {product.customization}</p>
+                <button
+                  type="button"
+                  onClick={() => handleDeleteProduct(product.id, product.selectedCategory)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <h2>Dressing Table Product List:</h2>
+      <div className="row row-cols-1 row-cols-md-5 g-4 ml-3  p-3" >
+        {dressProducts.map((product, index) => (
+          <div className="col" key={index}>
+            <div className="card border-primary border-2" style={{ width: "304px"}} >
+                <img
+                  src={product.urll}
+                  alt={product.name}
+                  className="card-img-top"
+                  style={{ objectFit: "cover", width: "300px", height: "300px" }}
+                />
+              <div className="card-body">
+                <h5 className="card-title">{product.name}</h5>
+                <p className="card-text">Price: {product.price}</p>
+                <p className="card-text">Traits: {product.customization}</p>
+                <button
+                  type="button"
+                  onClick={() => handleDeleteProduct(product.id, product.selectedCategory)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <h2>Side Table Product List:</h2>
+      <div className="row row-cols-1 row-cols-md-5 g-4 ml-3  p-3" >
+        {sideProducts.map((product, index) => (
+          <div className="col" key={index}>
+            <div className="card border-primary border-2" style={{ width: "304px"}} >
+                <img
+                  src={product.urll}
+                  alt={product.name}
+                  className="card-img-top"
+                  style={{ objectFit: "cover", width: "300px", height: "300px" }}
+                />
+              <div className="card-body">
+                <h5 className="card-title">{product.name}</h5>
+                <p className="card-text">Price: {product.price}</p>
+                <p className="card-text">Traits: {product.customization}</p>
+                <button
+                  type="button"
+                  onClick={() => handleDeleteProduct(product.id,  product.selectedCategory)}
                   className="btn btn-danger"
                 >
                   Delete
