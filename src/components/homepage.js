@@ -1,64 +1,111 @@
-import React,{useState} from 'react';
-import carouselbg1 from "./img/carousel-bg-1.jpg";
-import carouselbg2 from "./img/carousel-bg-2.jpg";
-import carousel1 from "./img/carousel-1.png";
-import carousel2 from "./img/carousel-2.png";
-// import Carousel from 'react-bootstrap/Carousel';
-import Carousel from './Carousel';
-// import carousel from "./img/carousel-bg-1.jpg";
-// import carousel from "./img/carousel-bg-1.jpg";
-// import carousel from "./img/carousel-bg-1.jpg";
+import React,{useState,useRef,useEffect} from 'react';
+
+import { scroller } from 'react-scroll';
+
+import carouselbg1 from "./img/background1.jpeg";
+import carouselbg2 from "./img/background2.jpeg";
+import carousel1 from "./img/foreground2.png";
+import carousel2 from "./img/foreground1.png";
+
 const HomePage = () => {
     const [inputName, setinputName] = useState("");
     const [inputEmail, setinputEmail] = useState("");
+    const explanationRef = useRef(null)
+
     const images = [[carouselbg1,carousel1],[carouselbg2,carousel2]]
-    // const images = [carousel1,carousel2]
+
+    
+      const Carousel = ({images }) => {
+        const [activeIndex, setActiveIndex] = useState(0);
+        const scrollToExplanation = () => {
+            scroller.scrollTo('explanation', {
+                smooth: true,
+                offset: -50, // Adjust the offset value as needed
+              });
+          };
+        const handlePrevClick = () => {
+          setActiveIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+        };
+      
+        const handleNextClick = () => {
+          setActiveIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+        };
+        return (
+          <div className="carousel">
+            <div className="carousel-inner">
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  className={`carousel-item ${index === activeIndex ? 'active' : ''}`}
+                >
+                  <img className="w-100" src={image[0]} alt="bruh"/>
+                          <div className="carousel-caption d-flex align-items-center">
+                              <div className="container">
+                                  <div className="row align-items-center justify-content-center justify-content-lg-start">
+                                      <div className="col-10 col-lg-7 text-center text-lg-start">
+                                          <h3 className="display-3 text-white mb-4 pb-3 animated slideInDown">Trusted furniture retailers and interior designers</h3>
+                                          <a className="btn btn-primary py-3 px-5 animated slideInDown" onClick={scrollToExplanation}>Learn More<i className="fa fa-arrow-right ms-3"></i></a>
+                                      </div>
+                                      <div className="col-lg-5 d-none d-lg-flex animated zoomIn">
+                                          <img className="img-fluid" src={image[1]} alt=""/>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      
+                </div>
+              ))}
+            </div>
+            <button className="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+                      onClick={handlePrevClick}
+                      data-bs-slide="prev">
+                      <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span className="visually-hidden">Previous</span>
+                  </button>
+                  <button className="carousel-control-next" type="button" data-bs-target="#header-carousel"
+                   onClick={handleNextClick}
+                      data-bs-slide="next">
+                      <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span className="visually-hidden">Next</span>
+                  </button> 
+          </div>
+        );
+      };
+
+    
     return (
         <div>
-    {/* <div id="spinner" className="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div className="spinner-border text-primary" 
-        //style="width: 3rem; height: 3rem;" 
-        role="status">
-            <span className="sr-only">Loading...</span>
-        </div>
-    </div> */}
-    
-
-   
     <div className="container-fluid p-0 mb-5">
        <Carousel images={images}/>
     </div>
 
-    <div className="container-xxl py-5">
+    <div className="container-xxl py-5" id="explanation" ref={explanationRef}>
         <div className="container">
             <div className="row g-4">
                 <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div className="d-flex py-5 px-4">
                         <i className="fa fa-certificate fa-3x text-primary flex-shrink-0"></i>
-                        <div className="ps-4">
+                        <div className="ps-4"  style={{ textAlign: 'justify' }}>
                             <h5 className="mb-3">Quality Servicing</h5>
-                            <p>Diam dolor diam ipsum sit amet diam et eos erat ipsum</p>
-                            <a className="text-secondary border-bottom" href="/">Read More</a>
+                            <p style={{ textJustify: 'inter-word' }}>Panache Furniture Showroom offers exceptional quality servicing, ensuring meticulous attention to detail. With expert craftsmanship and a keen eye for design, we provide an extensive range of furniture solutions that epitomize elegance, comfort, and style.</p>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div className="d-flex bg-light py-5 px-4">
                         <i className="fa fa-users-cog fa-3x text-primary flex-shrink-0"></i>
-                        <div className="ps-4">
+                        <div className="ps-4" style={{ textAlign: 'justify' }}>
                             <h5 className="mb-3">Expert Workers</h5>
-                            <p>Diam dolor diam ipsum sit amet diam et eos erat ipsum</p>
-                            <a className="text-secondary border-bottom" href="/">Read More</a>
+                            <p style={{ textJustify: 'inter-word' }}>Panache's expert furniture showroom workers possess impeccable craftsmanship, extensive product knowledge, and a keen eye for design. With their expertise in assisting customers, they create stunning spaces, combining elegance and functionality to transform houses into extraordinary homes.</p>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div className="d-flex py-5 px-4">
                         <i className="fa fa-tools fa-3x text-primary flex-shrink-0"></i>
-                        <div className="ps-4">
+                        <div className="ps-4" style={{ textAlign: 'justify' }}>
                             <h5 className="mb-3">Modern Equipment</h5>
-                            <p>Diam dolor diam ipsum sit amet diam et eos erat ipsum</p>
-                            <a className="text-secondary border-bottom" href="/">Read More</a>
+                            <p style={{ textJustify: 'inter-word' }}>Panache, a furniture showroom that values craftsmanship, employs modern manual equipment. From precision hand tools and ergonomic workbenches to versatile clamp systems and specialized joinery jigs, Panache ensures meticulous attention to detail in every piece they create.</p>
                         </div>
                     </div>
                 </div>
@@ -86,83 +133,82 @@ const HomePage = () => {
                 </div>
                 <div className="col-lg-6">
                     <h6 className="text-primary text-uppercase">{'// About Us //'}</h6>
-                    <h1 className="mb-4"><span className="text-primary">CarServ</span> Is The Best Place For Your Auto Care</h1>
-                    <p className="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                    <h1 className="mb-4"><span className="text-primary">Panache</span> interiors is the best place for home care</h1>
+                    <p className="mb-4">Where style meets sophistication. Our furniture showroom showcases exquisite designs, quality craftsmanship, and a curated collection of modern and timeless pieces that elevate your living spaces.</p>
                     <div className="row g-4 mb-3 pb-3">
                         <div className="col-12 wow fadeIn" data-wow-delay="0.1s">
                             <div className="d-flex">
-                                <div className="bg-light d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
+                                <div className=" d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
                                 //  style="width: 45px; height: 45px;"
                                  >
                                     <span className="fw-bold text-secondary">01</span>
                                 </div>
                                 <div className="ps-3">
-                                    <h6>Professional & Expert</h6>
-                                    <span>Diam dolor diam ipsum sit amet diam et eos</span>
+                                    <h6>Panache</h6>
+                                    <span>Exquisite furniture showroom with contemporary and timeless designs, offering high-quality pieces for stylish homes.</span>
                                 </div>
                             </div>
                         </div>
                         <div className="col-12 wow fadeIn" data-wow-delay="0.3s">
                             <div className="d-flex">
-                                <div className="bg-light d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
-                                //  style="width: 45px; height: 45px;"
+                                <div className=" d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
                                  >
-                                    <span className="fw-bold text-secondary">02</span>
+                                    <span className="fw-bold text-secondary" >02</span>
                                 </div>
                                 <div className="ps-3">
-                                    <h6>Quality Servicing Center</h6>
-                                    <span>Diam dolor diam ipsum sit amet diam et eos</span>
+                                    <h6>Sustainability-driven</h6>
+                                    <span>We prioritize eco-friendly materials and processes, partnering with artisans and manufacturers known for exceptional craftsmanship.</span>
                                 </div>
                             </div>
                         </div>
                         <div className="col-12 wow fadeIn" data-wow-delay="0.5s">
                             <div className="d-flex">
-                                <div className="bg-light d-flex flex-shrink-0 align-items-center justify-content-center mt-1" 
+                                <div className=" d-flex flex-shrink-0 align-items-center justify-content-center mt-1" 
                                 // style="width: 45px; height: 45px;"
                                 >
-                                    <span className="fw-bold text-secondary">03</span>
+                                    <span className="fw-bold text-secondary" >03</span>
                                 </div>
                                 <div className="ps-3">
-                                    <h6>Awards Winning Workers</h6>
-                                    <span>Diam dolor diam ipsum sit amet diam et eos</span>
+                                    <h6>Exceptional service</h6>
+                                    <span>Our staff provides personalized guidance, ensuring a warm and inviting experience as customers discover furniture that matches their unique style.</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <a href="/" className="btn btn-primary py-3 px-5">Read More<i className="fa fa-arrow-right ms-3"></i></a>
+                    {/* <a href="/" className="btn btn-primary py-3 px-5">Read More<i className="fa fa-arrow-right ms-3"></i></a> */}
                 </div>
             </div>
         </div>
     </div>
 
-    <div className="container-fluid fact bg-dark my-5 py-5">
-        <div className="container">
+    <div className="container-fluid my-5 py-5">
+        <div className="container ">
             <div className="row g-4">
                 <div className="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
-                    <i className="fa fa-check fa-2x text-white mb-3"></i>
-                    <h2 className="text-white mb-2" data-toggle="counter-up">1234</h2>
-                    <p className="text-white mb-0">Years Experience</p>
+                    <i className="fa fa-check fa-2x text-dark mb-3"></i>
+                    <h2 className="text-dark mb-2" data-toggle="counter-up">1234</h2>
+                    <p className="text-dark mb-0">Years Experience</p>
                 </div>
                 <div className="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
-                    <i className="fa fa-users-cog fa-2x text-white mb-3"></i>
-                    <h2 className="text-white mb-2" data-toggle="counter-up">1234</h2>
-                    <p className="text-white mb-0">Expert Technicians</p>
+                    <i className="fa fa-users-cog fa-2x text-dark mb-3"></i>
+                    <h2 className="text-dark mb-2" data-toggle="counter-up">1234</h2>
+                    <p className="text-dark mb-0">Expert Technicians</p>
                 </div>
                 <div className="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
-                    <i className="fa fa-users fa-2x text-white mb-3"></i>
-                    <h2 className="text-white mb-2" data-toggle="counter-up">1234</h2>
-                    <p className="text-white mb-0">Satisfied Clients</p>
+                    <i className="fa fa-users fa-2x text-dark mb-3"></i>
+                    <h2 className="text-dark mb-2" data-toggle="counter-up">1234</h2>
+                    <p className="text-dark mb-0">Satisfied Clients</p>
                 </div>
                 <div className="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
-                    <i className="fa fa-car fa-2x text-white mb-3"></i>
-                    <h2 className="text-white mb-2" data-toggle="counter-up">1234</h2>
-                    <p className="text-white mb-0">Compleate Projects</p>
+                    <i className="fa fa-car fa-2x text-dark mb-3"></i>
+                    <h2 className="text-dark mb-2" data-toggle="counter-up">1234</h2>
+                    <p className="text-dark mb-0">Compleate Projects</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div className="container-xxl service py-5">
+    {/* <div className="container-xxl service py-5">
         <div className="container">
             <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 className="text-primary text-uppercase">{'// Our Services //'}</h6>
@@ -280,9 +326,9 @@ const HomePage = () => {
                 </div>
             </div>
         </div>
-    </div>
+    </div> */}
 
-    <div className="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
+    {/* <div className="container-fluid bg-secondary booking my-5 wow fadeInUp" data-wow-delay="0.1s">
         <div className="container">
             <div className="row gx-5">
                 <div className="col-lg-6 py-5">
@@ -297,12 +343,10 @@ const HomePage = () => {
                         <form>
                             <div className="row g-3">
                                 <div className="col-12 col-sm-6">
-                                    {/* <input type="text" className="form-control border-0" placeholder="Your Name" style="height: 55px;"> */}
                                     <input type="text" value={inputName} onChange={e => setinputName(e.target.value)} placeholder='Name'/>
 
                                 </div>
                                 <div className="col-12 col-sm-6">
-                                    {/* <input type="email" className="form-control border-0" placeholder="Your Email" style="height: 55px;"> */}
                                     <input type="text" value={inputEmail} onChange={e => setinputEmail(e.target.value)} placeholder='Email' />
                                 </div>
                                 <div className="col-12 col-sm-6">
@@ -317,9 +361,7 @@ const HomePage = () => {
                                 </div>
                                 <div className="col-12 col-sm-6">
                                     <div className="date" id="date1" data-target-input="nearest">
-                                        {/* <input type="text"
-                                            className="form-control border-0 datetimepicker-input"
-                                            placeholder="Service Date" data-target="#date1" data-toggle="datetimepicker" style="height: 55px;"> */}
+                                      
                                     </div>
                                 </div>
                                 <div className="col-12">
@@ -334,9 +376,9 @@ const HomePage = () => {
                 </div>
             </div>
         </div>
-    </div>
+    </div> */}
 
-    <div className="container-xxl py-5">
+    {/* <div className="container-xxl py-5">
         <div className="container">
             <div className="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 className="text-primary text-uppercase">{'// Our Technicians //'}</h6>
@@ -409,58 +451,7 @@ const HomePage = () => {
                 </div>
             </div>
         </div>
-    </div>
-    <div className="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-        <div className="container">
-            <div className="text-center">
-                <h6 className="text-primary text-uppercase">{'// Testimonial //'}</h6>
-                <h1 className="mb-5">Our Clients Say!</h1>
-            </div>
-            <div className="owl-carousel testimonial-carousel position-relative">
-                <div className="testimonial-item text-center">
-                    <img alt="te" className="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-1.jpg" 
-                    // style="width: 80px; height: 80px;"
-                    />
-                    <h5 className="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div className="testimonial-text bg-light text-center p-4">
-                    <p className="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-                <div className="testimonial-item text-center">
-                    <img alt="te" className="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-2.jpg" 
-                    // style="width: 80px; height: 80px;"
-                    />
-                    <h5 className="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div className="testimonial-text bg-light text-center p-4">
-                    <p className="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-                <div className="testimonial-item text-center">
-                    <img alt="te" className="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-3.jpg" 
-                    // style="width: 80px; height: 80px;"
-                    />
-                    <h5 className="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div className="testimonial-text bg-light text-center p-4">
-                    <p className="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-                <div className="testimonial-item text-center">
-                    <img alt="te" className="bg-light rounded-circle p-2 mx-auto mb-3" src="img/testimonial-4.jpg"
-                    
-                    // style="width: 80px; height: 80px;"
-                    />
-                    <h5 className="mb-0">Client Name</h5>
-                    <p>Profession</p>
-                    <div className="testimonial-text bg-light text-center p-4">
-                    <p className="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </div> */}
 
     <div className="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
         <div className="container py-5">
@@ -484,7 +475,7 @@ const HomePage = () => {
                     <h6 className="text-light">Saturday - Sunday:</h6>
                     <p className="mb-0">09.00 AM - 12.00 PM</p>
                 </div>
-                <div className="col-lg-3 col-md-6">
+                {/* <div className="col-lg-3 col-md-6">
                     <h4 className="text-light mb-4">Services</h4>
                     <a className="btn btn-link" href="/">Diagnostic Test</a>
                     <a className="btn btn-link" href="/">Engine Servicing</a>
@@ -498,20 +489,19 @@ const HomePage = () => {
                     <div className="position-relative mx-auto" 
                     // style="max-width: 400px;"
                     >
-                        {/* <input className="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email"> */}
                         <button type="button" className="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
         <div className="container">
             <div className="copyright">
                 <div className="row">
                     <div className="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a className="border-bottom" href="/#">Your Site Name</a>, All Right Reserved.
+                        &copy; <a className="border-bottom" href="/#">Panache Interiors</a>, All Right Reserved.
 
                         
-                        Designed By <a className="border-bottom" href="/https://htmlcodex.com">HTML Codex</a>
+                        Designed By <a className="border-bottom" href="https://www.linkedin.com/in/kunalmakwanadatascience" >Kunal Makwana</a>
                     </div>
                     <div className="col-md-6 text-center text-md-end">
                         <div className="footer-menu">

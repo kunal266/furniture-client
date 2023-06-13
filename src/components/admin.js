@@ -155,6 +155,7 @@ const HomePage = () => {
       const dressdinsap  = await getDocs(collection(db, 'Dressing Table'));
       const dressdinprodu = dressdinsap.docs.map((doc) =>  ({ id: doc.id, ...doc.data() }));
       setdressProducts(dressdinprodu);
+      // console.log(centerdinsapdinprodu)
       // console.log(bedroomProducts)
     } catch (error) {
       console.log(error);
@@ -169,12 +170,13 @@ const HomePage = () => {
 
 
 
-  const categoryList = ['Sofa','Beds','Cupboard','Center Table','Dining Table','Couches','Side Table','Dressing Table']
+  const categoryList = ['Sofa','Beds','Cupboard','Center Table','Dining Table','Couches','Side Table','Dressing Table','Homepage']
   const sofasubCategoryList = ['Sofa cumbed','Sofa with louger','Sofa 3+1+1','Sofa 3+2']
   const bedsublist = ['King Size','Queen Size']
   const cupboardlist = ['Backpainted Glass','Digital Glass','Laminate Finish','Wall to Wall']
   const centertablelist = ['Marble Top','Wooden Top','Onex For table Top','1+1','Glass Top']
   const diningtablelist = ['Marble Top (Wooden Base)','Marble Top (Steel Base)','Glass Top (Steel Base)','Wooden Dining Table']
+  const HomepageList = ['Background1','Background2','Foreground1','Foreground2']
   const handleNameChange = (event) => {
     setName(event.target.value);
   };
@@ -310,8 +312,8 @@ const HomePage = () => {
           };
           // Add the new product to Firestore
           console.log(newProduct)
-          if (selectedCategory==='sofa'){
-          await addDoc(collection(db, 'sofa'), newProduct);
+          if (selectedCategory==='Sofa'){
+          await addDoc(collection(db, 'Sofa'), newProduct);
           setProducts((prevProducts) => [...prevProducts, newProduct]);
           setName('');
           setPrice('');
@@ -319,8 +321,8 @@ const HomePage = () => {
           // setCategory('');
           // setUrl('');
         }
-          else if (selectedCategory==='beds'){
-            await addDoc(collection(db, 'beds'), newProduct);
+          else if (selectedCategory==='Beda'){
+            await addDoc(collection(db, 'Beds'), newProduct);
             setProducts((prevProducts) => [...prevProducts, newProduct]);
             setName('');
             setPrice('');
@@ -336,8 +338,8 @@ const HomePage = () => {
             setCustomization('');
             // setCategory('');
             setUrl('');}   
-            else if (selectedCategory==='centerTable'){
-              await addDoc(collection(db, 'centerTable'), newProduct);
+            else if (selectedCategory==='Center Table'){
+              await addDoc(collection(db, 'Center Table'), newProduct);
               setProducts((prevProducts) => [...prevProducts, newProduct]);
               setName('');
               setPrice('');
