@@ -135,7 +135,7 @@ const Cart = () => {
       color:'black',
       zIndex: 9998 
     }}>
-      <button className="bg-warning" onClick={()=>setModalVisible(true)}  style={{borderRadius:'8px'}}>Checkout
+      <button className="bg-primary text-white" onClick={()=>setModalVisible(true)}  style={{borderRadius:'8px'}}>Checkout
       </button>{' '}
       {(modalVisible && totalCost>0)?<Checkout/>:null}
       </div></div>

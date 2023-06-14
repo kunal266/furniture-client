@@ -188,7 +188,7 @@ const ShopPage = () => {
           })}
           <a  className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(couchesProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Couches</a>
           <a  className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(sideTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Side Tables</a>
-          <a  className='row mt-3 px-2 fw-bold' onClick={()=>setCurrentList(dressingTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Dressing Tables</a>
+          <a  className='row mt-3 mb-3 px-2 fw-bold' onClick={()=>setCurrentList(dressingTableProducts)} style={{ color: 'black',cursor: 'pointer',fontSize:'19px'}}>Dressing Tables</a>
         </div>
         <div className="col-lg-10">
           <div className="row row-cols-1 row-cols-md-5 pt-2" >

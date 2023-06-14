@@ -6,14 +6,14 @@ import carouselbg1 from "./img/background1.jpeg";
 import carouselbg2 from "./img/background2.jpeg";
 import carousel1 from "./img/foreground2.png";
 import carousel2 from "./img/foreground1.png";
-import AboutUs from './img/AboutUs.png'
+import AboutUs from './img/aboutus.jpg'
 
 const HomePage = () => {
     const [inputName, setinputName] = useState("");
     const [inputEmail, setinputEmail] = useState("");
     const explanationRef = useRef(null)
 
-    const images = [[carouselbg1,carousel1],[carouselbg2,carousel2]]
+    const images = [[carouselbg1,carousel1,'Trusted furniture retailers and interior designers'],[carouselbg2,carousel2,'In Quality we Trust']]
 
     
       const Carousel = ({images }) => {
@@ -44,7 +44,7 @@ const HomePage = () => {
                               <div className="container">
                                   <div className="row align-items-center justify-content-center justify-content-lg-start">
                                       <div className="col-10 col-lg-7 text-center text-lg-start">
-                                          <h3 className="display-3 text-white mb-4 pb-3 animated slideInDown">Trusted furniture retailers and interior designers</h3>
+                                          <h3 className="display-3 text-white mb-4 pb-3 animated slideInDown">{image[2]}</h3>
                                           <a className="btn btn-primary py-3 px-5 animated slideInDown" onClick={scrollToExplanation}>Learn More<i className="fa fa-arrow-right ms-3"></i></a>
                                       </div>
                                       <div className="col-lg-5 d-none d-lg-flex animated zoomIn">

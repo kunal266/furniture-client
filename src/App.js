@@ -55,6 +55,7 @@ const App = ()=>{
              {/* <Route path="/" element={<Modal />} /> */}
            </Routes>
          </Router>
+         
          </CartContext.Provider>
   )
 }
