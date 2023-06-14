@@ -6,6 +6,7 @@ import carouselbg1 from "./img/background1.jpeg";
 import carouselbg2 from "./img/background2.jpeg";
 import carousel1 from "./img/foreground2.png";
 import carousel2 from "./img/foreground1.png";
+import AboutUs from './img/AboutUs.png'
 
 const HomePage = () => {
     const [inputName, setinputName] = useState("");
@@ -120,15 +121,9 @@ const HomePage = () => {
                 // style="min-height: 400px;"
                 >
                     <div className="position-relative h-100 wow fadeIn" data-wow-delay="0.1s">
-                        <img className="position-absolute img-fluid w-100 h-100" src="img/about.jpg" 
+                        <img className="position-absolute img-fluid w-100 " src={AboutUs}
                         // style="object-fit: cover;" 
                         alt="asd"/>
-                        <div className="position-absolute top-0 end-0 mt-n4 me-n4 py-4 px-5" 
-                        // style="background: rgba(0, 0, 0, .08);"
-                        >
-                            <h1 className="display-4 text-white mb-0">15 <span className="fs-4">Years</span></h1>
-                            <h4 className="text-white">Experience</h4>
-                        </div>
                     </div>
                 </div>
                 <div className="col-lg-6">
