@@ -462,12 +462,13 @@ const HomePage = () => {
             className="form-control"
             value={prodId}
             onChange={handleIdChange}
+            disabled
           />
         </div>
         <div className="mb-3 mr-3">
           <label htmlFor="price" className="form-label">Price:</label>
           <input
-            type="text"
+            type="number"
             id="price"
             className="form-control"
             value={price}
@@ -475,7 +476,7 @@ const HomePage = () => {
           />
         </div>
         <div className="mb-3 mr-3">
-          <label htmlFor="customization" className="form-label">customization:</label>
+          <label htmlFor="customization" className="form-label">customization(Size, textures, Color):</label>
           <input
             type="text"
             id="customization"

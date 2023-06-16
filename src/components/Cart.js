@@ -87,7 +87,7 @@ const Cart = () => {
     let temp =0
     products.map((value)=>{
 
-      temp = temp + (value[0]*1000)
+      temp = temp + parseInt(value[1].price)
       return 0
     })
     console.log(temp)
@@ -132,10 +132,9 @@ const Cart = () => {
       fontSize:'22px',
       // backgroundColor: '',
       padding: '30px 35px 20px 45px',margin:'15px',
-      color:'black',
       zIndex: 9998 
     }}>
-      <button className="bg-primary text-white" onClick={()=>setModalVisible(true)}  style={{borderRadius:'8px'}}>Checkout
+      <button className="bg-primary text-white" onClick={()=>setModalVisible(true)}  style={{}}>Checkout
       </button>{' '}
       {(modalVisible && totalCost>0)?<Checkout/>:null}
       </div></div>
@@ -167,10 +166,13 @@ const Cart = () => {
                       {value[1].name}
                       </div>
                       <div className='row-1 ' style={{fontSize:'13px'}}>
-                      #{value[1].prodId}
+                      #{value[1].id}
                       </div>
                       <div className='row-2' style={{margin:'15px 0',color:'black'}}>
-                      Category: {value[1].selectedSubCategory}
+                      Category: {value[1].selectedCategory}
+                      </div>
+                      <div className='row-2' style={{margin:'15px 0',color:'black'}}>
+                      Sub-Category: {value[1].selectedSubCategory}
                       </div>
                       <div className='row-1' style={{margin:'15px 0',color:'black',fontSize:'15px'}}>
                       Quantity: x{value[0]}
@@ -182,7 +184,7 @@ const Cart = () => {
 
                 <div className='col-4 d-flex justify-content-end align-items-center'
                 >
-                  <div style={{ padding: '30px 35px 20px 45px',margin:'15px',fontWeight:'bold' ,color:'black',fontSize:'18px'}}>₹ {value[0]*(1000)}</div>
+                  <div style={{ padding: '30px 35px 20px 45px',margin:'15px',fontWeight:'bold' ,color:'black',fontSize:'18px'}}>₹ {value[0]*parseInt(value[1].price)}</div>
                   </div>
 
         </div>
