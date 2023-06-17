@@ -24,7 +24,7 @@ const Carousel = ({images }) => {
                         <div className="container">
                             <div className="row align-items-center justify-content-center justify-content-lg-start">
                                 <div className="col-10 col-lg-7 text-center text-lg-start">
-                                    <h3 className="display-3 text-white mb-4 pb-3 animated slideInDown">Trusted furniture retailers and interior designers</h3>
+                                    <h3 className="display-3 text-white mb-4 pb-3 animated slideInDown">Trusted retailers and interior designers</h3>
                                     <a href="" className="btn btn-primary py-3 px-5 animated slideInDown">Learn More<i className="fa fa-arrow-right ms-3"></i></a>
                                 </div>
                                 <div className="col-lg-5 d-none d-lg-flex animated zoomIn">

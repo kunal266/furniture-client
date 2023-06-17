@@ -7,6 +7,11 @@ const Cart = () => {
   const [totalCost,settotalCost] = useState(0);
   const { cart  } = useContext(CartContext);
   const [modalVisible, setModalVisible] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
+  const breakpoint = 400;
 
   const Checkout = () =>{
     const closeModal = () => {
@@ -29,7 +34,7 @@ const Cart = () => {
       padding: '20px',
       borderRadius: '5px',
       height:'500px',
-      width:'500px'
+      width:(width<breakpoint)?'350px':'500px'
     };
   
     const textStyle = {
@@ -74,7 +79,7 @@ const Cart = () => {
           </div>
           <div style={{display: 'flex',
       justifyContent: 'flex-center'}}>
-        <p style={{margin:'30px auto auto auto ',}}>
+        <p style={{margin:'30px auto auto auto ',color:'black'}}>
         ₹ {totalCost}
 
         </p> </div>
@@ -96,32 +101,23 @@ const Cart = () => {
   }
   useEffect( ()=>{
     settotalCost(totalcostt())
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   },[]);
   return (
     <div className="container">
     <div className="row">
       
       <div className="col-8">
-        <h2 style={{ padding: '15px 45px',margin:'15px' }}>Furniture Cart</h2>
+        <h2 style={
+          { padding: '15px 45px',margin:'15px' }}>{(width<breakpoint) ?'Cart':'Furniture Cart'}</h2>
         
     </div>
     <div className="col-4 d-flex justify-content-end align-items-center">
     <h6 style={{ padding: '30px 35px 20px 45px',margin:'15px' }}>Price</h6>
     <div>
-    {/* <div  className="col-4 d-flex justify-content-end align-items-center" style={{
-      position: 'absolute',
-      bottom: 0,
-      right:10,
-      // width: '100%',
-      fontWeight:'bold',
-      fontSize:'22px',
-      // backgroundColor: 'white',
-      // borderTop: '1px solid gray',
-      padding: '30px 35px 20px 45px',margin:'15px',
-      color:'black',
-      zIndex: 9999 }}>
-        ₹ {totalCost}
-      </div> */}
       <div  className="col-2 d-flex justify-content-end align-items-center" style={{
       position: 'fixed',
       bottom: 10,
@@ -131,11 +127,12 @@ const Cart = () => {
       fontWeight:'bold',
       fontSize:'22px',
       // backgroundColor: '',
-      padding: '30px 35px 20px 45px',margin:'15px',
+      padding: width<breakpoint?'5px':'30px 35px 20px 45px',
+      margin:'15px',
       zIndex: 9998 
     }}>
-      <button className="bg-primary text-white" onClick={()=>setModalVisible(true)}  style={{}}>Checkout
-      </button>{' '}
+      <button className="bg-primary text-white" onClick={()=>setModalVisible(true)}  style={{border:'0px',padding:'0px 7px'}}>Checkout
+      </button >{' '}
       {(modalVisible && totalCost>0)?<Checkout/>:null}
       </div></div>
 </div>
@@ -146,9 +143,9 @@ const Cart = () => {
               <div className='row' style={{borderTop: '1px solid gray'}} key={key}>
               <div className="col-8">
                 <div className='row'>
-                <div className='col-1' style={{widht:'2em',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                {(width<breakpoint) ?null:<div className='col-1' style={{widht:'2em',display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             {index + 1}
-          </div>
+          </div>}
                   <div className='col-2' style={{padding:'15px 0',width:'240px'}}>
                   <img
                         src={value[1].urll}
@@ -162,20 +159,27 @@ const Cart = () => {
 
                     <div className='col-5'>
                       <div className='col'>
-                      <div className='row-1' style={{margin:'15px 0',fontSize:'22px',fontWeight:'bold',color:'black'}}>
+                      <div className='row-1' style={(width<breakpoint) ?
+                      {margin:'5px 0',fontSize:'18px',fontWeight:'bold',color:'black'}:
+                      {margin:'15px 0',fontSize:'22px',fontWeight:'bold',color:'black'} }>
                       {value[1].name}
                       </div>
-                      <div className='row-1 ' style={{fontSize:'13px'}}>
+                      {(width<breakpoint) ?null:<div className='row-1 ' style={{fontSize:'13px'}}>
                       #{value[1].id}
+                      </div>}
+                      {(width<breakpoint) ?null:<div className='row-2' style={{margin:'15px 0',color:'black'}}>
+                     Category: {value[1].selectedCategory}
+                      </div>}
+                      <div className='row-2' style={(width<breakpoint) ?
+                        {margin:'5px 0',color:'black'}:
+                        {margin:'15px 0',color:'black'} }>
+                      {(width<breakpoint) ?null:'Sub-Category:'} {value[1].selectedSubCategory}
                       </div>
-                      <div className='row-2' style={{margin:'15px 0',color:'black'}}>
-                      Category: {value[1].selectedCategory}
-                      </div>
-                      <div className='row-2' style={{margin:'15px 0',color:'black'}}>
-                      Sub-Category: {value[1].selectedSubCategory}
-                      </div>
-                      <div className='row-1' style={{margin:'15px 0',color:'black',fontSize:'15px'}}>
-                      Quantity: x{value[0]}
+                      <div className='row-1' style={(width<breakpoint) ?
+                      {margin:'5px 0',color:'black',fontSize:'13px'}:
+                      {margin:'15px 0',color:'black',fontSize:'15px'}
+                    }>
+                      {(width<breakpoint) ?null:'Quantity:'} x{value[0]}
                       </div>
                       </div>
                     </div>
@@ -184,7 +188,7 @@ const Cart = () => {
 
                 <div className='col-4 d-flex justify-content-end align-items-center'
                 >
-                  <div style={{ padding: '30px 35px 20px 45px',margin:'15px',fontWeight:'bold' ,color:'black',fontSize:'18px'}}>₹ {value[0]*parseInt(value[1].price)}</div>
+                  <div style={{ padding:(width<breakpoint) ? '5px':'30px 35px 20px 45px',margin:'15px',fontWeight:'bold' ,color:'black',fontSize:(width<breakpoint) ?'16px':'18px'}}>₹ {value[0]*parseInt(value[1].price)}</div>
                   </div>
 
         </div>
