@@ -19,12 +19,12 @@ const AboutNav = () => {
                     <small className="fa fa-phone-alt text-primary me-2"></small>
                     <small>+012 345 6789</small>
                 </div>
-                <div className="h-100 d-inline-flex align-items-center">
+                {/* <div className="h-100 d-inline-flex align-items-center">
                     <a href='/' className="btn btn-sm-square bg-white text-primary me-1"><i className="fab fa-facebook-f"></i></a>
                     <a href='/' className="btn btn-sm-square bg-white text-primary me-1"><i className="fab fa-twitter"></i></a>
                     <a href='/' className="btn btn-sm-square bg-white text-primary me-1"><i className="fab fa-linkedin-in"></i></a>
                     <a href='https://instagram.com/1.panacheinteriors' target='_blank' className="btn btn-sm-square bg-white text-primary me-0"><i className="fab fa-instagram"></i></a>
-                </div>
+                </div> */}
             </div>
         </div>
     </div>
