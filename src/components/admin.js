@@ -171,7 +171,7 @@ const HomePage = () => {
 
 
   const categoryList = ['Sofa','Beds','Cupboard','Center Table','Dining Table','Couches','Side Table','Dressing Table','Homepage']
-  const sofasubCategoryList = ['Sofa cumbed','Sofa with louger','Sofa 3+1+1','Sofa 3+2']
+  const sofasubCategoryList = ['Sofa cumbed','Sofa with lounger','Sofa with Recliner','Sofa 3+1+1','Sofa 3+2']
   const bedsublist = ['King Size','Queen Size']
   const cupboardlist = ['Backpainted Glass','Digital Glass','Laminate Finish','Wall to Wall']
   const centertablelist = ['Marble Top','Wooden Top','Onex For table Top','1+1','Glass Top']
