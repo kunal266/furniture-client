@@ -22,6 +22,7 @@ const AboutNav = () => {
                 <div className="h-100 d-inline-flex align-items-center">
                 
                     <a href='https://g.co/kgs/jBgAXa' target='_blank' className="btn btn-sm-square bg-white text-primary me-1"><i className="fa fa-search" aria-hidden="true"></i></a>
+                    <a href='/admin' target='_blank' className="btn btn-sm-square bg-white text-primary me-1"><i className="fa fa-user-circle" aria-hidden="true"></i></a>
                     <a href='https://instagram.com/1.panacheinteriors' target='_blank' className="btn btn-sm-square bg-white text-primary me-1"><i className="fab fa-instagram"></i></a>
                     <a href="mailto:panacheinterios32@gmail.com" target='_blank' className="btn btn-sm-square bg-white text-primary me-1"><i class="fa fa-envelope" aria-hidden="true"></i></a>
                 </div>
