@@ -51,7 +51,7 @@ const App = ()=>{
             <Route path="/" element={<Mainpage />} />
              {/* <Route path="/:category/:id"  element={<ItemDetails />} /> */}
              {/* <Route path="/shop" element={<ShopPage/>}/> */}
-             <Route path="/admin" element={<Admin />} />
+             {/* <Route path="/admin" element={<Admin />} /> */}
              {/* <Route path="/" element={<Modal />} /> */}
            </Routes>
          </Router>
