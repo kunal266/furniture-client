@@ -321,7 +321,7 @@ const HomePage = () => {
           // setCategory('');
           // setUrl('');
         }
-          else if (selectedCategory==='Beda'){
+          else if (selectedCategory==='Beds'){
             await addDoc(collection(db, 'Beds'), newProduct);
             setProducts((prevProducts) => [...prevProducts, newProduct]);
             setName('');
@@ -763,9 +763,9 @@ const HomePage = () => {
   return (
     <div>
       
-      {user? null:<LoginForm />}
-      {user? <HomePage />:null}
-      {/* <HomePage/> */}
+      {/* {user? null:<LoginForm />} */}
+      {/* {user? <HomePage />:null} */}
+      <HomePage/>
     </div>
   );
 };

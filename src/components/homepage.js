@@ -189,22 +189,22 @@ const HomePage = () => {
             <div className="row g-4">
                 <div className="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
                     <i className="fa fa-check fa-2x text-dark mb-3"></i>
-                    <h2 className="text-dark mb-2" data-toggle="counter-up">1234</h2>
+                    <h2 className="text-dark mb-2" data-toggle="counter-up">20</h2>
                     <p className="text-dark mb-0">Years Experience</p>
                 </div>
                 <div className="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
                     <i className="fa fa-users-cog fa-2x text-dark mb-3"></i>
-                    <h2 className="text-dark mb-2" data-toggle="counter-up">1234</h2>
+                    <h2 className="text-dark mb-2" data-toggle="counter-up">200+</h2>
                     <p className="text-dark mb-0">Expert Technicians</p>
                 </div>
                 <div className="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
                     <i className="fa fa-users fa-2x text-dark mb-3"></i>
-                    <h2 className="text-dark mb-2" data-toggle="counter-up">1234</h2>
+                    <h2 className="text-dark mb-2" data-toggle="counter-up">35000+</h2>
                     <p className="text-dark mb-0">Satisfied Clients</p>
                 </div>
                 <div className="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
                     <i className="fa fa-car fa-2x text-dark mb-3"></i>
-                    <h2 className="text-dark mb-2" data-toggle="counter-up">1234</h2>
+                    <h2 className="text-dark mb-2" data-toggle="counter-up">300+</h2>
                     <p className="text-dark mb-0">Compleate Projects</p>
                 </div>
             </div>
@@ -217,8 +217,8 @@ const HomePage = () => {
                 <div className="col-lg-3 col-md-6">
                     <h4 className="text-light mb-4">Address</h4>
                     <p className="mb-2"><i className="fa fa-map-marker-alt me-3"></i>Kalher, Bhiwandi, Maharashtra 401201</p>
-                    <p className="mb-2"><i className="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p className="mb-2"><i className="fa fa-envelope me-3"></i>info@example.com</p>
+                    <p className="mb-2"><i className="fa fa-phone-alt me-3"></i><a href="tel:9967497465" style={{color:"white"}}>+91-9967497465</a></p>
+                    <p className="mb-2"><i className="fa fa-envelope me-3"></i><a href="mailto:panacheinterios32@gmail.com" style={{color:"white"}}>panacheinterios32@gmail.com</a></p>
                     {/* <div className="d-flex pt-2">
                         <a className="btn btn-outline-light btn-social" href="/"><i className="fab fa-twitter"></i></a>
                         <a className="btn btn-outline-light btn-social" href="/"><i className="fab fa-facebook-f"></i></a>
@@ -228,10 +228,10 @@ const HomePage = () => {
                 </div>
                 <div className="col-lg-3 col-md-6">
                     <h4 className="text-light mb-4">Opening Hours</h4>
-                    <h6 className="text-light">Monday - Friday:</h6>
-                    <p className="mb-4">09.00 AM - 09.00 PM</p>
+                    <h6 className="text-light">Monday - Thursday:</h6>
+                    <p className="mb-4">10.00 AM - 08.00 PM</p>
                     <h6 className="text-light">Saturday - Sunday:</h6>
-                    <p className="mb-0">09.00 AM - 12.00 PM</p>
+                    <p className="mb-0">10.00 AM - 09.00 PM</p>
                 </div>
 
             </div>
