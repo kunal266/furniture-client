@@ -763,9 +763,9 @@ const HomePage = () => {
   return (
     <div>
       
-      {/* {user? null:<LoginForm />} */}
-      {/* {user? <HomePage />:null} */}
-      <HomePage/>
+      {user? null:<LoginForm />} 
+       {user? <HomePage />:null}
+      {/* <HomePage/> */}
     </div>
   );
 };
