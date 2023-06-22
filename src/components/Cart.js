@@ -1,6 +1,6 @@
 import React, { useState,useContext ,useEffect} from 'react';
 import { CartContext } from '../App';
-
+import QrCode from './img/qrcode.jpeg'
 
 const Cart = () => {
 
@@ -14,9 +14,35 @@ const Cart = () => {
   const breakpoint = 400;
 
   const Checkout = () =>{
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [address, setAddress] = useState('');
+    const [contact, setContact] = useState('');
     const closeModal = () => {
       setModalVisible(false);
     };
+    function handleSubmit(e) {
+      e.preventDefault();
+      // Do something with the form data
+      console.log({ name, email, address, contact });
+    }
+  
+    // Handle input changes
+    function handleNameChange(e) {
+      setName(e.target.value);
+    }
+  
+    function handleEmailChange(e) {
+      setEmail(e.target.value);
+    }
+  
+    function handleAddressChange(e) {
+      setAddress(e.target.value);
+    }
+  
+    function handleContactChange(e) {
+      setContact(e.target.value);
+    }
     const modalOverlayStyle = {
       position: 'fixed',
       top: 0,
@@ -48,6 +74,19 @@ const Cart = () => {
       alignItems: 'center',
       cursor: 'pointer',
     };
+    const labelStyle = {
+      display: 'block',
+      width: '100px',
+      fontSize: '14px'
+    };
+  
+    const inputStyle = {
+      width: '200px',
+      height: '40px',
+      padding: '10px',
+      margin: '5px'
+    };
+  
     return(
 
       <div style={modalOverlayStyle}>
@@ -80,9 +119,82 @@ const Cart = () => {
           <div style={{display: 'flex',
       justifyContent: 'flex-center'}}>
         <p style={{margin:'30px auto auto auto ',color:'black'}}>
-        ₹ {totalCost}
+        Total Cost: ₹ {totalCost}
 
         </p> </div>
+        <div className='row'> 
+        <form onSubmit={handleSubmit} className='col-6'>
+      <div>
+        <label htmlFor="name" style={labelStyle}>
+          Name
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={name}
+          onChange={handleNameChange}
+          style={inputStyle}
+        />
+      </div>
+      <div>
+        <label htmlFor="email" style={labelStyle}>
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={email}
+          onChange={handleEmailChange}
+          style={inputStyle}
+        />
+      </div>
+      <div>
+        <label htmlFor="address" style={labelStyle}>
+          Address
+        </label>
+        <input
+          type="text"
+          id="address"
+          name="address"
+          value={address}
+          onChange={handleAddressChange}
+          style={inputStyle}
+        />
+      </div>
+      <div>
+        <label htmlFor="contact" style={labelStyle}>
+          Contact:
+        </label>
+        <input
+          type="tel"
+          id="contact"
+          name="contact"
+          value={contact}
+          onChange={handleContactChange}
+          style={inputStyle}
+        />
+      </div>
+      <div style={{fontSize:'12px',color:'red'}}>*please use your real info</div>
+    </form>
+      <div className='col-6'>
+      <div >
+        <div style={{fontSize:'14px',color:'black',marginBottom:'5px', textAlign: 'center'}}>
+          Pay <span style={{fontSize:'15px', color:'red'}}>₹ {parseInt(0.25*totalCost)}</span> as advance
+          </div>
+        <img src={QrCode} alt='qrcode' style={{height:'200px',width:'200px'}} >
+        </img>
+          {/* <div style={{fontSize:'10px'}}>25% in advance</div>
+        
+        <div style={{fontSize:'10px'}}>50% During the process</div>
+          <div style={{fontSize:'10px'}}>25% Before the Delivery</div> */}
+          <div style={{fontSize:'11px',color:'red'}}>*After Payment kindly click submit button to receive confirmation and do not close the page until then</div>
+      </div>
+      <button onClick={handleSubmit} style={{border:'0px',marginTop:'5px'}}>Submit</button>
+      
+      </div>
+    </div>
         </div>
       </div>
     )
@@ -133,7 +245,8 @@ const Cart = () => {
     }}>
       <button className="bg-primary text-white" onClick={()=>setModalVisible(true)}  style={{border:'0px',padding:'0px 7px'}}>Checkout
       </button >{' '}
-      {(modalVisible && totalCost>0)?<Checkout/>:null}
+      {(modalVisible)?<Checkout/>:null}
+      {/* {(modalVisible && totalCost>0)?<Checkout/>:null} */}
       </div></div>
 </div>
 </div>
