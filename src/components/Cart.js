@@ -11,13 +11,14 @@ const Cart = () => {
   const handleResize = () => {
     setWidth(window.innerWidth);
   };
-  const breakpoint = 400;
+  const breakpoint = 500;
 
   const Checkout = () =>{
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
     const [contact, setContact] = useState('');
+    const [page1,setpage1] = useState(true);
     const closeModal = () => {
       setModalVisible(false);
     };
@@ -59,7 +60,7 @@ const Cart = () => {
       backgroundColor: '#fff',
       padding: '20px',
       borderRadius: '5px',
-      height:'500px',
+      height:(width<breakpoint)?'600px':'500px',
       width:(width<breakpoint)?'350px':'500px'
     };
   
@@ -75,16 +76,19 @@ const Cart = () => {
       cursor: 'pointer',
     };
     const labelStyle = {
-      display: 'block',
-      width: '100px',
+
+      display: (width<breakpoint)?'inline-block':'block',
+      width: (width<breakpoint)?'60px':'100px',
       fontSize: '14px'
     };
   
     const inputStyle = {
-      width: '200px',
-      height: '40px',
+      width: (width<breakpoint)?'220px':'200px',
+      height: (width<breakpoint)?'30px':'40px',
       padding: '10px',
-      margin: '5px'
+      margin: '5px',
+      display: (width<breakpoint)?'inline-block':'',
+
     };
   
     return(
@@ -118,15 +122,15 @@ const Cart = () => {
           </div>
           <div style={{display: 'flex',
       justifyContent: 'flex-center'}}>
-        <p style={{margin:'30px auto auto auto ',color:'black'}}>
+        <p style={{margin:(width<breakpoint)?'10px auto auto auto ':'30px auto auto auto ',color:'black'}}>
         Total Cost: ₹ {totalCost}
 
         </p> </div>
-        <div className='row'> 
-        <form onSubmit={handleSubmit} className='col-6'>
+        <div className={(width<breakpoint)?'col':'row'}> 
+        <form onSubmit={handleSubmit} className={(width<breakpoint)?'row-6':'col-6'}>
       <div>
         <label htmlFor="name" style={labelStyle}>
-          Name
+          Name:
         </label>
         <input
           type="text"
@@ -139,7 +143,7 @@ const Cart = () => {
       </div>
       <div>
         <label htmlFor="email" style={labelStyle}>
-          Email
+          Email:
         </label>
         <input
           type="email"
@@ -152,7 +156,7 @@ const Cart = () => {
       </div>
       <div>
         <label htmlFor="address" style={labelStyle}>
-          Address
+          Address:
         </label>
         <input
           type="text"
@@ -178,13 +182,14 @@ const Cart = () => {
       </div>
       <div style={{fontSize:'12px',color:'red'}}>*please use your real info</div>
     </form>
-      <div className='col-6'>
+      <div className={(width<breakpoint)?'row-6':'col-6'}>
       <div >
         <div style={{fontSize:'14px',color:'black',marginBottom:'5px', textAlign: 'center'}}>
           Pay <span style={{fontSize:'15px', color:'red'}}>₹ {parseInt(0.25*totalCost)}</span> as advance
           </div>
+          <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         <img src={QrCode} alt='qrcode' style={{height:'200px',width:'200px'}} >
-        </img>
+        </img></div>
           {/* <div style={{fontSize:'10px'}}>25% in advance</div>
         
         <div style={{fontSize:'10px'}}>50% During the process</div>
@@ -245,8 +250,8 @@ const Cart = () => {
     }}>
       <button className="bg-primary text-white" onClick={()=>setModalVisible(true)}  style={{border:'0px',padding:'0px 7px'}}>Checkout
       </button >{' '}
-      {(modalVisible)?<Checkout/>:null}
-      {/* {(modalVisible && totalCost>0)?<Checkout/>:null} */}
+      {/* {(modalVisible)?<Checkout/>:null} */}
+      {(modalVisible && totalCost>0)?<Checkout/>:null}
       </div></div>
 </div>
 </div>

@@ -207,7 +207,7 @@ const breakpoint = 400;
     <div className=" w-100" >
       <div className="row">
       {(width < breakpoint) ? <div>
-          <button onClick={openModal} style={{marginTop:'5px',width:'100vw',border:'0px',backgroundColor:'lightgray'}}>{modalopen?'Close':'Open'}{' '}Filters</button>
+          <button onClick={openModal} style={{marginTop:'5px',width:'100vw',border:'0px',backgroundColor:'lightgray',padding:'5px'}}>{modalopen?'Close':'Open'}{' '}Filters</button>
           {modalopen && <Shoplist/>}
       </div>:<Shoplist/>}
         <div className="col-lg-10">
